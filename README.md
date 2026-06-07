@@ -121,7 +121,7 @@ project and need adaptation or are reference-only.
 - [x] `world-update` — Campaign world state updates
 - [x] `prep-session` — Session prep
 - [x] `prep-encounter` — Encounter design and calibration
-- [ ] `prep-npc` — NPC creation and expansion
+- [x] `prep-npc` — NPC creation and expansion
 - [ ] `prep-creature` — Creature/monster stat blocks
 - [ ] `prep-dungeon` — Dungeon and adventure site design
 - [ ] `prep-ship` — Ship creation

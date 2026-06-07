@@ -1,15 +1,15 @@
 ---
 name: prep-npc
 description: >
-  Create or expand a named NPC wiki page for the Shattered Sea campaign. Invoke for:
+  Create or expand a named NPC wiki page for the campaign. Invoke for:
   "prep an NPC", "create a page for [NPC]", "flesh out [NPC]", "I need an NPC who...",
   "expand [NPC]'s entry", any NPC that will appear at the table. Generates frontmatter,
   toy fields, lore sheet, read-aloud appearance, voice notes, connections, and DM
-  companion page. Checks wiki/index.md for stubs before creating. Also use for villain
+  companion page. Checks the wiki index for stubs before creating. Also use for villain
   NPCs needing stat block integration.
 ---
 
-> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in [`prep-family-standards`](../ttrpg-llm-wiki-init/references/prep-family-standards.md). Read it before generating; this file covers only what's specific to this content type.
+> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in your project's `prep-family-standards.md` reference if one exists. Read it before generating; this file covers only what's specific to this content type.
 ## Interview
 
 If the user message doesn't already answer these, ask all at once — not one at a time:
@@ -86,7 +86,7 @@ Full detail: `references/NPC.md`
 ## Publish Pairing
 
 For any NPC introduced to players: create paired pages.
-- Wiki page at `wiki/entities/characters/npcs/npc-slug.md` — `publish: true`, `audience: players`
+- Wiki page at `<wiki>/entities/characters/npcs/npc-slug.md` — `publish: true`, `audience: players`
 - DM companion noted in frontmatter via `dm_companion:` field
 - DM-only content (secrets, mechanics, hidden agenda) goes in a separate audience:dm file or in wiki sections marked with `audience: dm` frontmatter
 
@@ -109,7 +109,7 @@ Skip for minor NPCs who won't appear at the table.
 ## Filing
 
 After writing the page:
-1. Add entry to `wiki/index.md` under `## entities/characters/npcs`
+1. Add entry to `<wiki>/index.md` under the appropriate section
 2. Add reciprocal links to all referenced entities
 3. Commit: `feat: npc — {slug} — {one-line summary}`
 
@@ -130,5 +130,5 @@ callouts. Anti-slop, Brennan voice, callout types, and publish contracts all app
 | `../ttrpg-writing/references/player-facing-prose.md` | Writing `[!read-aloud]` appearance callout |
 | `../ttrpg-writing/references/callout-standard.md` | Callout type enforcement and conversion |
 | `../ttrpg-writing/references/NAMES.md` | Naming a new NPC — linguistic roots by race |
-| `../ttrpg-llm-wiki-init/references/auto-correct.md` | Fixing structural issues during or after content creation |
-| `../ttrpg-llm-wiki-init/references/wikilink-standards.md` | Creating or fixing wikilinks |
+| Your project's auto-correct reference (if it exists) | Fixing structural issues during or after content creation |
+| Your project's wikilink-standards reference (if it exists) | Creating or fixing wikilinks |
