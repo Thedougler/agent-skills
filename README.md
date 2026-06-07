@@ -113,7 +113,7 @@ project and need adaptation or are reference-only.
 - [x] `ttrpg-wiki-query` — Query and search wiki data
 - [x] `ttrpg-writing` — Prose quality for wiki content
 - [x] `ttrpg-visual-aids` — Visual aid generation for sessions
-- [ ] `vault-health` — Vault integrity checks
+- [x] `vault-health` — Vault integrity checks
 - [ ] `cross-linker` — Add missing cross-references
 - [ ] `tag-taxonomy` — Controlled tagging vocabulary
 - [ ] `session-ingest` — Session transcript processing
