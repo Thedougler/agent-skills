@@ -53,10 +53,6 @@ project and need adaptation or are reference-only.
 - [ ] `improve-codebase-architecture` — Architecture review and deepening
 - [ ] `create-agent` — Bootstrap modular AI agents with OpenRouter
 - [ ] `enforced-in-code` — Code-enforced policy patterns
-- [ ] `continuous-self-improvement` — Wiki infrastructure self-optimization loop
-- [ ] `organize` — Alias for ttrpg-wiki-organize
-- [ ] `cli-improvement` — sea CLI enhancement patterns
-- [ ] `player-view-dev` — Player-view NiceGUI dev tooling
 
 ### Web / Vercel / Backend
 
@@ -74,7 +70,6 @@ project and need adaptation or are reference-only.
 - [ ] `wrangler` — Wrangler CLI reference
 - [ ] `agents-sdk` — Cloudflare Agents SDK
 - [ ] `sandbox-sdk` — Cloudflare Sandbox SDK
-- [ ] `db-reset` — NextTurn SQLite database reset
 
 ### Mobile / React Native
 
@@ -140,10 +135,7 @@ project and need adaptation or are reference-only.
 - [ ] `sandbox-narrative` — Sandbox narrative generation
 - [ ] `live-co-dm` — Live co-DM with voice profiling
 - [ ] `live-transcription` — Session audio transcription
-- [ ] `live-transcription-workspace` — Live transcription workspace
 - [ ] `roll-dice` — Dice rolling utility
-- [ ] `daily-update` — Daily vault updates
-- [ ] `new-wiki-entry` — Wiki entry creation with frontmatter
 
 ### Job Search
 
