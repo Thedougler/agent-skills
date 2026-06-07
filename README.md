@@ -133,7 +133,7 @@ project and need adaptation or are reference-only.
 - [x] `pc-combat-primer` — PC combat profiles
 - [x] `sandbox-narrative` — Sandbox narrative generation
 - [x] `live-co-dm` — Live co-DM with voice profiling
-- [ ] `live-transcription` — Session audio transcription
+- [x] `live-transcription` — Session audio transcription
 - [x] `roll-dice` — Dice rolling utility
 
 ### Job Search

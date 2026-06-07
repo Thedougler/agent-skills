@@ -1,7 +1,7 @@
 ---
 name: live-transcription
 description: >
-  Use when working on the shattered-audio live transcription system —
+  Use when working on the shattered-audio live transcription CLI —
   multi-mic capture, real-time transcription, voice profiles, speaker
   identification, character voice separation, persona enrollment, chunking,
   cold-pass diarization. Triggers: "live transcription", "shattered-audio
@@ -9,7 +9,7 @@ description: >
   "retrain profiles", "audio devices", "recording session", "transcription
   pipeline", "persona", "character voice", mic/capture/VAD issues, speaker
   ID problems, cold pass errors. Also use when maintaining, debugging, or
-  extending any module under tools/audio/src/shattered_audio/.
+  extending any module under the shattered_audio package.
 ---
 
 # Live Transcription System
@@ -65,19 +65,19 @@ player usually has one (their PC).
 
 ```
 profiles/
-  nick/           # actor directory
+  alice/          # actor directory (DM)
     base.npy      # actor's natural voice embedding
     meta.yaml     # name, sample_count, is_dm, personas list
-    thunk.npy     # persona embedding
-    thunk_prosody.yaml
-    grigori.npy
-    grigori_prosody.yaml
-  alex/
+    npc1.npy      # persona embedding
+    npc1_prosody.yaml
+    npc2.npy
+    npc2_prosody.yaml
+  bob/
     base.npy
     meta.yaml
-    delmar.npy
-    delmar_prosody.yaml
-  chad.npy        # legacy flat profile (still loads fine)
+    pc1.npy
+    pc1_prosody.yaml
+  legacy_actor.npy  # legacy flat profile (still loads fine)
 ```
 
 ### Two-Stage Identification
@@ -115,7 +115,7 @@ Venv: `tools/audio/.venv`. Install: `pip install -e ".[all]"`.
 Start a recording session. Ctrl+C to stop.
 
 ```
-shattered-audio live --session 12 [--speakers nick,alex] [--config path]
+shattered-audio live --session 12 [--speakers player1,player2] [--config path]
 ```
 
 Writes `Inbox/current.md` (hot) and `Inbox/sNN-chunk-NNN.md` (cold).
@@ -127,13 +127,13 @@ Create or update a voice profile — actor (default) or persona (with --actor).
 
 ```
 # Enroll actor (player's natural voice)
-shattered-audio enroll "Nick" recording.wav
-shattered-audio enroll "Nick" --record 30
-shattered-audio enroll "Nick" --dm --record 30   # mark as DM
+shattered-audio enroll "Alice" recording.wav
+shattered-audio enroll "Alice" --record 30
+shattered-audio enroll "Alice" --dm --record 30   # mark as DM
 
 # Enroll persona (character voice) under an actor
-shattered-audio enroll "Thunk" --actor Nick --record 10
-shattered-audio enroll "Grigori" --actor Nick recording.wav
+shattered-audio enroll "NPC1" --actor Alice --record 10
+shattered-audio enroll "NPC2" --actor Alice recording.wav
 ```
 
 Actor must exist before enrolling personas. Re-enrolling blends with
@@ -145,7 +145,7 @@ List all actors and their character voices.
 
 ```
 shattered-audio profiles              # list all
-shattered-audio profiles Nick         # detail for one actor
+shattered-audio profiles Alice        # detail for one actor
 ```
 
 ### `shattered-audio retrain`
@@ -158,8 +158,8 @@ shattered-audio retrain Inbox/s12-chunk-001.md --audio-dir Inbox/ --blend 0.7
 shattered-audio retrain transcript.md --legacy    # v1 flat profiles only
 ```
 
-Transcript labels supported: `**Thunk:**` (resolved to Nick's persona),
-`**Nick (as Thunk):**` (explicit), `**Nick:**` (actor base voice).
+Transcript labels supported: `**NPC1:**` (resolved to Alice's persona),
+`**Alice (as NPC1):**` (explicit), `**Alice:**` (actor base voice).
 
 #### `--speaker-map` (session-ingest integration)
 
@@ -212,7 +212,7 @@ mic_names:
   - "MacBook Air Microphone"
   - "USB-C Audio"
 channel_priors:
-  mic_0: "Nick"
+  mic_0: "Alice"
 actor_threshold: 0.7
 persona_threshold: 0.6
 prosody_weight: 0.3
@@ -243,10 +243,10 @@ If unavailable, cold pass still runs — just without diarization labels.
 ### Adding a character voice
 
 1. Ensure the actor is already enrolled
-2. `shattered-audio enroll "CharacterName" --actor ActorName --record 10`
+2. `shattered-audio enroll "CharacterName" --actor "PlayerName" --record 10`
    — have them do the character voice for 10+ seconds
 3. Repeat enrollment 2-3 times with different samples for more exemplars
-4. `shattered-audio profiles ActorName` — verify persona appears with exemplars
+4. `shattered-audio profiles "PlayerName"` — verify persona appears with exemplars
 5. Test with a short live session
 
 ### Improving accuracy after a session
@@ -315,15 +315,15 @@ Uses character names when persona is detected, actor names otherwise.
 ### Cold output (chunk markdown)
 
 ```yaml
-speakers_detected: [Nick, Thunk, Grigori, Alex, Delmar]
+speakers_detected: [Alice, NPC1, NPC2, Bob, PC1]
 speaker_actors:
-  Thunk: Nick
-  Grigori: Nick
-  Delmar: Alex
+  NPC1: Alice
+  NPC2: Alice
+  PC1: Bob
 speaker_confidence:
-  Nick: 0.89
-  Thunk: 0.72
-  Grigori: 0.68
+  Alice: 0.89
+  NPC1: 0.72
+  NPC2: 0.68
 ```
 
 ## Module Map
