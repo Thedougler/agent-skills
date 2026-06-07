@@ -1,7 +1,7 @@
 ---
 name: prep-session
 description: >
-  Build the at-the-table operating document for one session of the Shattered Sea sandbox — a
+  Build the at-the-table operating document for one session of the campaign — a
   scannable run guide the DM runs cold, written like a professional adventure module. Invoke for:
   "prep for next session", "give me a session plan", "what do I run Saturday", "help me run
   tonight", "session prep", "build a run guide", "prep tonight's session", "/run-guide",
@@ -19,11 +19,10 @@ description: >
 A **session run guide**: one DM-only file you open at the table and never leave. Not a story, not
 a script, not a recap, not a table of contents linking elsewhere. Written in the voice and
 density of a published adventure module, built for a sandbox where the party can do anything in
-any order. The vault's [[calveno-sandbox-run-guide|Calveno Sandbox Run Guide]] is the quality
-target.
+any order. A good sandbox run guide from a prior session in your wiki is the quality target.
 
 This skill also applies the shared prep discipline (PC connection, spotlight, prose pass) — see
-`../ttrpg-llm-wiki-init/references/prep-family-standards.md`.
+your project's `prep-family-standards.md` reference if one exists.
 
 ## The iron rule: one file, one session
 
@@ -80,14 +79,14 @@ advancement is `world-update`'s job (its on-demand mode owns canon clock writes)
 ## Workflow
 
 1. **Ground in current state.** Read in the CLAUDE.md reading order, stopping when you have
-   enough: `wiki/hot.md` (always — Open PC Threads, Faction Clocks, Live Situations, Predictions,
-   Spotlight Tracking) → most recent `wiki/sessions/session-NN-recap.md` → active situation files
+   enough: `<wiki>/hot.md` (always — Open PC Threads, Faction Clocks, Live Situations, Predictions,
+   Spotlight Tracking) → most recent `<wiki>/sessions/session-NN-recap.md` → active situation files
    near the party → relevant entity pages (summaries first; open full pages only when needed).
-   Supplementary if populated: `wiki/dm/player-interests.md`, `wiki/system/party-session-primer.md`.
+   Supplementary if populated: `<wiki>/dm/player-interests.md`, `<wiki>/system/party-session-primer.md`.
 2. **Name what is already in motion** before inventing: where the party is, the last hard break,
    what they promised/broke/ignored, which situations and factions have reason to act now, which
    PC hooks are hot.
-3. **Spotlight check.** Read Spotlight Tracking in `hot.md`. Find the PC who has gone longest
+3. **Spotlight check.** Read Spotlight Tracking in the world state file. Find the PC who has gone longest
    without a meaningful moment; ensure ≥1 scene gives them one, attached to a real pressure.
 4. **Scope & pace.** Use `references/PACING.md` to pick the 2–3 threads worth advancing and to
    vary register so the session has rhythm. How many in-game days (max 3)? Cut aggressively.
@@ -95,8 +94,8 @@ advancement is `world-update`'s job (its on-demand mode owns canon clock writes)
    a single-pass draft produces thin, inconsistent cards. Each scene card must be runnable with
    the rest of the wiki closed (the Inline-First Contract in `references/run-guide-spec.md`).
 6. **Run the quality gate** in `references/run-guide-spec.md` before finalizing.
-7. **Save and commit.** `wiki/sessions/session-NN-run-guide.md`. Fill frontmatter. Update
-   `hot.md` only if prep revealed a state change.
+7. **Save and commit.** `<wiki>/sessions/session-NN-run-guide.md`. Fill frontmatter. Update
+   the world state file only if prep revealed a state change.
 
 Ground every claim in a page you read this session. If a fact isn't in the wiki, mark it a
 **proposal**. If two pages conflict, surface a `> [!contradiction]` with both sources.
@@ -128,7 +127,7 @@ pass on the finished guide.
 | `references/run-guide-spec.md` | Building or revising a guide — inline-first contract, scene card template, section specs with examples, file template, quality gate |
 | `references/STRONG-START.md` | Writing the opening — the five strong-start types, failure modes, anti-patterns |
 | `references/PACING.md` | Choosing threads, shaping rhythm, register variation, off-screen pressure |
-| `../ttrpg-llm-wiki-init/references/prep-family-standards.md` | Shared prep discipline (PC connection, spotlight, prose pass) |
+| Your project's `prep-family-standards.md` (if it exists) | Shared prep discipline (PC connection, spotlight, prose pass) |
 | `../ttrpg-writing/references/dm-reference-standards.md` | DM-facing scene cards, NPC handles |
 | `../ttrpg-writing/references/player-facing-prose.md` | `[!read-aloud]` callouts |
 | `../ttrpg-writing/references/callout-standard.md` | Callout type enforcement |

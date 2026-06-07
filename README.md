@@ -119,7 +119,7 @@ project and need adaptation or are reference-only.
 - [x] `session-ingest` — Session transcript processing
 - [x] `session-recap` — Session summaries
 - [x] `world-update` — Campaign world state updates
-- [ ] `prep-session` — Session prep
+- [x] `prep-session` — Session prep
 - [ ] `prep-encounter` — Encounter design and calibration
 - [ ] `prep-npc` — NPC creation and expansion
 - [ ] `prep-creature` — Creature/monster stat blocks
