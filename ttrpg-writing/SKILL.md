@@ -1,7 +1,7 @@
 ---
 name: ttrpg-writing
 description: >
-  Use when writing, rewriting, or reviewing any Shattered Sea wiki content. Triggers:
+  Use when writing, rewriting, or reviewing any TTRPG wiki or campaign content. Triggers:
   "make this better", "punch this up", "this feels flat", "write a read-aloud", "rewrite
   this as DM reference", any prose quality review, any content creation alongside a domain
   skill (prep-npc, prep-session, prep-location, etc.). Also use when callout types look
@@ -62,7 +62,7 @@ Leave them alone.
 
 ## Brennan Voice
 
-The base voice for all Shattered Sea content. Apply to every piece of D&D writing, then layer
+The base voice for this campaign's content. Apply to every piece of D&D writing, then layer
 mode-specific technique on top. This voice works because it forces events to happen rather than
 be observed — the player is inside the consequence, not watching it approach.
 
@@ -317,8 +317,8 @@ Load `references/dm-reference-standards.md` at Phase 3 and keep it active throug
 - **Draft**: establish mode, then write using this skill's standards throughout.
 - **Audit**: name the most consequential issues by impact, not count. Give targeted fixes.
 - No congratulatory openers, unsolicited summaries, or generic follow-up invitations.
-- No invented stakes, lore, or canonical facts — check `wiki/index.md` first.
-- After any wiki write: refresh `wiki/hot.md` if world state changed, then commit. (The `updated:` field is stamped automatically by the PostToolUse hook — do not set it by hand.)
+- No invented stakes, lore, or canonical facts — check your wiki index first.
+- After any wiki write: refresh the current world state file if world state changed, then commit. (The `updated:` field may be stamped automatically by a PostToolUse hook — check your project's hook config before setting it by hand.)
 
 ---
 

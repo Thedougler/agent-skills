@@ -111,7 +111,7 @@ project and need adaptation or are reference-only.
 - [x] `ttrpg-wiki-lint` — Health checks and auto-corrections
 - [x] `ttrpg-wiki-organize` — Vault file/folder restructuring
 - [x] `ttrpg-wiki-query` — Query and search wiki data
-- [ ] `ttrpg-writing` — Prose quality for wiki content
+- [x] `ttrpg-writing` — Prose quality for wiki content
 - [ ] `ttrpg-visual-aids` — Visual aid generation for sessions
 - [ ] `vault-health` — Vault integrity checks
 - [ ] `cross-linker` — Add missing cross-references
