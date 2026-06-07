@@ -1,7 +1,7 @@
 ---
 name: ttrpg-wiki-ingest
 description: >
-  Use when ingesting source material into the Shattered Sea wiki. Triggers: "ingest",
+  Use when ingesting source material into a TTRPG wiki. Triggers: "ingest",
   "process this into the wiki", "digest this document", "decompose this source",
   "what hasn't been ingested", "what's pending", "process the inbox", "catch up the
   wiki", "clear the backlog", or new files appearing in Inbox/. Also use when the user
