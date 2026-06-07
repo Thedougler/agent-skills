@@ -120,7 +120,7 @@ project and need adaptation or are reference-only.
 - [x] `session-recap` — Session summaries
 - [x] `world-update` — Campaign world state updates
 - [x] `prep-session` — Session prep
-- [ ] `prep-encounter` — Encounter design and calibration
+- [x] `prep-encounter` — Encounter design and calibration
 - [ ] `prep-npc` — NPC creation and expansion
 - [ ] `prep-creature` — Creature/monster stat blocks
 - [ ] `prep-dungeon` — Dungeon and adventure site design

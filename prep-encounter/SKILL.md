@@ -1,7 +1,7 @@
 ---
 name: prep-encounter
 description: >
-  Use when designing any encounter for the Shattered Sea campaign — combat, social,
+  Use when designing any encounter for the campaign — combat, social,
   skill challenge, or hybrid. Invoke for: "design an encounter", "I need a fight",
   "build an encounter with [enemy]", "make an encounter around [location]", "how many
   [monsters] should I use", "balance this fight", "I need a tense scene at [place]",
@@ -9,11 +9,11 @@ description: >
   prep-dungeon (Phase 2) and prep-session when encounter calibration is needed.
 ---
 
-> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in [`prep-family-standards`](../ttrpg-llm-wiki-init/references/prep-family-standards.md). Read it before generating; this file covers only what's specific to this content type.
+> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in your project's `prep-family-standards.md` reference if one exists. Read it before generating; this file covers only what's specific to this content type.
 
 Read these before generating any encounter content:
-1. `wiki/system/party-combat-primer.md` — party combat patterns, Avoid flags (binding)
-2. `wiki/dm/combat-analytics.md` — empirical patterns observed at this table
+1. `<wiki>/system/party-combat-primer.md` — party combat patterns, Avoid flags (binding)
+2. `<wiki>/dm/combat-analytics.md` — empirical patterns observed at this table
 
 The party primer's **Avoid** section is binding. If your encounter would violate it,
 redesign before proceeding.
@@ -74,8 +74,7 @@ combat-analytics.
 **Terrain:** Always includes 2–3 actionable terrain features. Decorative is not
 actionable — each feature must have a mechanical use available to both sides.
 
-**Faction presence:** If this encounter involves a faction from `wiki/hot.md`, match
-their current resource state (depleted, reinforced, desperate).
+**Faction presence:** If this encounter involves a faction from the world state file (`<wiki>/hot.md`), match their current resource state (depleted, reinforced, desperate).
 
 **Multi-faction encounters:** When two or more enemy groups are present (e.g. smugglers
 + a creature), discount the total CR budget by ~25% — enemies that fight each other
@@ -147,7 +146,7 @@ Load `sandbox-narrative` for an anti-railroading pass on encounters tied to larg
 - **`prep-dungeon`** — If called from prep-dungeon Phase 2, deliver the enemy roster, tactical behavior, and calibration data, then return to that skill.
 - **`prep-session`** — Encounters designed for a specific session should be inlined in the run guide per that skill's inline-first conventions. File a standalone page only when the encounter is reusable or complex enough to warrant its own entry.
 - **`prep-hb-item`** — If the encounter involves notable loot (named items, faction cargo, quest objects), route through `prep-hb-item` for any homebrew items with DM review. Don't invent homebrew item mechanics inline.
-- **`world-update`** — If the encounter outcome would advance or set back a faction clock in `wiki/hot.md`, note which clock and by how many segments. Do not write the clock update — flag it for DM review.
+- **`world-update`** — If the encounter outcome would advance or set back a faction clock in the world state file, note which clock and by how many segments. Do not write the clock update — flag it for DM review.
 
 ---
 
@@ -174,16 +173,16 @@ Universal fields are auto-completed by the write hook. You must author the encou
 
 ## Filing
 
-**Standalone encounter** (reusable or complex): `wiki/situations/active/{slug}.md`
+**Standalone encounter** (reusable or complex): `<wiki>/situations/active/{slug}.md`
 
 **Session-specific encounter** (one-time, tied to a session): inline in the session run guide. No separate file.
 
 **Dungeon encounter** (part of a keyed site): inline in the dungeon page per `prep-dungeon` room format.
 
 After writing a standalone file:
-1. Add entry to `wiki/index.md` under `## situations`
+1. Add entry to `<wiki>/index.md` under `## situations`
 2. Add reciprocal links to all referenced entities and factions
-3. If the encounter has a faction clock connection: flag for `wiki/hot.md` update
+3. If the encounter has a faction clock connection: flag for world state file (`<wiki>/hot.md`) update
 4. Commit: `feat: encounter — {slug} — {one-line summary}`
 
 ---
@@ -205,5 +204,5 @@ notes, stakes, and if-ignored. **Player-facing prose** for `[!read-aloud]` callo
 | `../ttrpg-writing/references/dm-reference-standards.md` | Writing tactical notes, enemy roster, stakes |
 | `../ttrpg-writing/references/player-facing-prose.md` | Writing `[!read-aloud]` encounter text |
 | `../ttrpg-writing/references/callout-standard.md` | Callout type enforcement and conversion |
-| `../ttrpg-llm-wiki-init/references/auto-correct.md` | Fixing structural issues during or after content creation |
-| `../ttrpg-llm-wiki-init/references/wikilink-standards.md` | Creating or fixing wikilinks |
+| Your project's auto-correct reference (if it exists) | Fixing structural issues during or after content creation |
+| Your project's wikilink-standards reference (if it exists) | Creating or fixing wikilinks |
