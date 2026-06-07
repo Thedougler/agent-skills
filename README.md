@@ -134,7 +134,7 @@ project and need adaptation or are reference-only.
 - [ ] `sandbox-narrative` — Sandbox narrative generation
 - [ ] `live-co-dm` — Live co-DM with voice profiling
 - [ ] `live-transcription` — Session audio transcription
-- [ ] `roll-dice` — Dice rolling utility
+- [x] `roll-dice` — Dice rolling utility
 
 ### Job Search
 
