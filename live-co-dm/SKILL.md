@@ -1,15 +1,15 @@
 ---
 name: live-co-dm
 description: >
-  Real-time co-DM for the Shattered Sea campaign while a session is actively being
-  played. Invoke for: "co-DM the session", "live DM help", "I'm running right now",
-  "mid-session", "improv help", "the players just...", "what happens next", "they
-  went off-book", "I need an NPC/name/twist right now", "/live-dm", "/co-dm". ALSO
-  the home of the DM's voice tools — invoke for "save a voice profile", "set up a
-  character voice", "improve/correct/optimize a voice profile", "start transcribing
-  the session", "record the session", "finalize the transcript". In live mode it reads
-  the most recent session transcript plus minimal world state and replies FAST and
-  CONCISE, then waits — skipping wiki startup, init, lint, index regen, and routine
+  Real-time co-DM while a session is actively being played. Invoke for: "co-DM the
+  session", "live DM help", "I'm running right now", "mid-session", "improv help",
+  "the players just...", "what happens next", "they went off-book", "I need an
+  NPC/name/twist right now", "/live-dm", "/co-dm". ALSO the home of the DM's voice
+  tools — invoke for "save a voice profile", "set up a character voice",
+  "improve/correct/optimize a voice profile", "start transcribing the session",
+  "record the session", "finalize the transcript". In live mode it reads the most
+  recent session transcript plus minimal world state and replies FAST and CONCISE,
+  then waits — skipping wiki startup, init, lint, index regen, and routine
   maintenance so the whole context serves the moment. Bundled scripts do voice
   profiling (browser teleprompter, self-correcting from finalized transcripts) and
   continuous 4h+ transcription with accurate, overlap-aware speaker separation.
@@ -17,8 +17,7 @@ description: >
 
 > Sandbox rules (PC boundary, NPC agency, pressures not plots) are in CLAUDE.md.
 > **In live mode you deliberately skip most operational rules** — see below.
-> Grounding/agency non-negotiables are shared with
-> `.claude/skills/prep-session/references/co-dm.md`.
+> Grounding/agency non-negotiables are in `references/co-dm-behavior.md`.
 
 This skill has two distinct users:
 
@@ -36,10 +35,10 @@ You are assisting a DM **mid-session**. Latency and concision beat completeness.
 ### Startup (do exactly this — and nothing else)
 1. Run the fast context loader — this is your ONLY required read:
    ```bash
-   python3 .claude/skills/live-co-dm/scripts/latest_session_context.py --wiki wiki --tail 80
+   python3 .claude/skills/live-co-dm/scripts/latest_session_context.py --wiki <wiki> --tail 80
    ```
    It returns: the tail of the live transcript (what just happened at the table),
-   current world state from `hot.md` (faction clocks, live threads), and a pointer
+   current world state from the world-state file (faction clocks, live threads), and a pointer
    to the previous session note.
 2. **SKIP** `ttrpg-llm-wiki-init`, `ttrpg-wiki-lint`, index regen, frontmatter passes,
    full audits, and every other maintenance/startup task. Do not read the full vault.
@@ -48,13 +47,12 @@ You are assisting a DM **mid-session**. Latency and concision beat completeness.
 ### During play
 - **Answer in seconds, not paragraphs.** A name, three bullet options, one stat line,
   a yes/and. The DM is reading you aloud-adjacent — be table-ready.
-- The live transcript at `wiki/sessions/.live/session-NN/live_transcript.md` is your
+- The live transcript at `<wiki>/sessions/.live/session-NN/live_transcript.md` is your
   memory of the current scene. Re-read its tail when the DM asks "what just happened".
 - Need one specific established fact (an NPC's secret, a location detail)? Use
   `ttrpg-wiki-query` for that single lookup — don't bulk-load.
-- Surface faction-clock pressure from `hot.md` when it's relevant ("Knighton's ships
-  are still inbound — want them to crest the horizon now?"), but never fire a trigger
-  without offering it as a choice.
+- Surface faction-clock pressure from the world-state file when it's relevant, but never
+  fire a trigger without offering it as a choice.
 - **Preserve agency.** Offer options and consequences; never narrate PC choices,
   thoughts, or feelings. Flag invented detail as a proposal, not canon.
 - **Defer all canon writes.** No session recap, ingest, cross-linking, or page edits
