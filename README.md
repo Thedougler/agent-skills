@@ -31,11 +31,11 @@ cp -r agent-skills/tdd my-project/.claude/skills/tdd
 
 | Tier | When | How | Examples |
 |---|---|---|---|
-| **Symlink** | Skill is generic and high quality — you'd never need to edit it | `ln -s` | `skill-creator`, `find-skills`, `tdd` |
-| **Copy** | Skill is useful as a starting point but needs project-specific adaptation | `cp -r` then edit | `improve-codebase-architecture`, `prep-npc` |
+| **Symlink** | Skill is generic and high quality — you'd never need to edit it | `ln -s` | `skill-creator`, `find-skills`, `tdd`, `improve-codebase-architecture` |
+| **Copy** | Skill is useful as a starting point but needs project-specific adaptation | `cp -r` then edit | `prep-npc` |
 | **Reference** | Skill is tightly coupled to its source project — read it for ideas | Browse on GitHub | `job-scraper`, `ttrpg-wiki-ingest`, `session-ingest` |
 
-> **Current state:** `skill-creator`, `find-skills`, and `tdd` are symlink-ready.
+> **Current state:** `skill-creator`, `find-skills`, `tdd`, and `improve-codebase-architecture` are symlink-ready.
 > Most other skills were built for a specific repo and need adaptation.
 > Skills are being generalized over time — check the SKILL.md before assuming portability.
 
@@ -49,7 +49,7 @@ project and need adaptation or are reference-only.
 - [x] `skill-creator` — Create, improve, and benchmark skills
 - [x] `find-skills` — Discover installable skills
 - [x] `tdd` — Test-driven development framework
-- [ ] `improve-codebase-architecture` — Architecture review and deepening
+- [x] `improve-codebase-architecture` — Architecture review and deepening
 - [ ] `create-agent` — Bootstrap modular AI agents with OpenRouter
 - [ ] `enforced-in-code` — Code-enforced policy patterns
 
