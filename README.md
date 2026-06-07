@@ -55,47 +55,47 @@ project and need adaptation or are reference-only.
 
 ### Web / Vercel / Backend
 
-- [ ] `vercel-react-best-practices` — React/Next.js performance (70 rules)
-- [ ] `vercel-react-native-skills` — Vercel for React Native
-- [ ] `deploy-to-vercel` — Vercel deployment workflows
-- [ ] `web-perf` — Web performance optimization via Chrome DevTools
-- [ ] `web-design-guidelines` — Web Interface Guidelines compliance
-- [ ] `ui-ux-pro-max` — UX/UI best practices (50+ styles, 161 palettes)
-- [ ] `use-dom` — Expo DOM components for web-to-native migration
-- [ ] `supabase` — Supabase database and auth
-- [ ] `supabase-postgres-best-practices` — Postgres optimization
-- [ ] `workers-best-practices` — Cloudflare Workers patterns
-- [ ] `durable-objects` — Cloudflare Durable Objects
-- [ ] `wrangler` — Wrangler CLI reference
-- [ ] `agents-sdk` — Cloudflare Agents SDK
-- [ ] `sandbox-sdk` — Cloudflare Sandbox SDK
+- [x] `vercel-react-best-practices` — React/Next.js performance (70 rules)
+- [x] `vercel-react-native-skills` — Vercel for React Native
+- [x] `deploy-to-vercel` — Vercel deployment workflows
+- [x] `web-perf` — Web performance optimization via Chrome DevTools
+- [x] `web-design-guidelines` — Web Interface Guidelines compliance
+- [x] `ui-ux-pro-max` — UX/UI best practices (50+ styles, 161 palettes)
+- [x] `use-dom` — Expo DOM components for web-to-native migration
+- [x] `supabase` — Supabase database and auth
+- [x] `supabase-postgres-best-practices` — Postgres optimization
+- [x] `workers-best-practices` — Cloudflare Workers patterns
+- [x] `durable-objects` — Cloudflare Durable Objects
+- [x] `wrangler` — Wrangler CLI reference
+- [x] `agents-sdk` — Cloudflare Agents SDK
+- [x] `sandbox-sdk` — Cloudflare Sandbox SDK
 
 ### Mobile / React Native
 
-- [ ] `react-native-best-practices` — React Native performance patterns
-- [ ] `expo-cicd-workflows` — Expo CI/CD with EAS
-- [ ] `expo-deployment` — Expo app deployment (iOS, Android, web)
-- [ ] `expo-dev-client` — Expo dev client setup
-- [ ] `expo-module` — Expo native modules (Swift, Kotlin)
-- [ ] `expo-observe` — EAS Observe metrics and monitoring
-- [ ] `expo-tailwind-setup` — Tailwind CSS v4 in Expo
-- [ ] `expo-api-routes` — Expo Router API routes
-- [ ] `expo-brownfield` — Brownfield Expo integration
-- [ ] `expo-ui-swiftui` — SwiftUI views in Expo
-- [ ] `expo-ui-jetpack-compose` — Jetpack Compose views in Expo
-- [ ] `building-native-ui` — Native component development
-- [ ] `native-data-fetching` — Network requests and data fetching
-- [ ] `add-app-clip` — iOS App Clips
-- [ ] `upgrading-expo` — Expo SDK version upgrades
-- [ ] `eas-update-insights` — EAS Update health monitoring
+- [x] `react-native-best-practices` — React Native performance patterns
+- [x] `expo-cicd-workflows` — Expo CI/CD with EAS
+- [x] `expo-deployment` — Expo app deployment (iOS, Android, web)
+- [x] `expo-dev-client` — Expo dev client setup
+- [x] `expo-module` — Expo native modules (Swift, Kotlin)
+- [x] `expo-observe` — EAS Observe metrics and monitoring
+- [x] `expo-tailwind-setup` — Tailwind CSS v4 in Expo
+- [x] `expo-api-routes` — Expo Router API routes
+- [x] `expo-brownfield` — Brownfield Expo integration
+- [x] `expo-ui-swiftui` — SwiftUI views in Expo
+- [x] `expo-ui-jetpack-compose` — Jetpack Compose views in Expo
+- [x] `building-native-ui` — Native component development
+- [x] `native-data-fetching` — Network requests and data fetching
+- [x] `add-app-clip` — iOS App Clips
+- [x] `upgrading-expo` — Expo SDK version upgrades
+- [x] `eas-update-insights` — EAS Update health monitoring
 
 ### OpenRouter
 
-- [ ] `openrouter-models` — Model selection and pricing reference
-- [ ] `openrouter-typescript-sdk` — TypeScript SDK usage
-- [ ] `openrouter-usage` — Usage and cost querying
-- [ ] `openrouter-image-gen` — Image generation via OpenRouter
-- [ ] `openrouter-image-edit` — Image editing via OpenRouter
+- [x] `openrouter-models` — Model selection and pricing reference
+- [x] `openrouter-typescript-sdk` — TypeScript SDK usage
+- [x] `openrouter-usage` — Usage and cost querying
+- [x] `openrouter-image-gen` — Image generation via OpenRouter
+- [x] `openrouter-image-edit` — Image editing via OpenRouter
 
 ### Obsidian
 
