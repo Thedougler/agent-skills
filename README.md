@@ -124,8 +124,8 @@ project and need adaptation or are reference-only.
 - [x] `prep-npc` — NPC creation and expansion
 - [x] `prep-creature` — Creature/monster stat blocks
 - [x] `prep-dungeon` — Dungeon and adventure site design
-- [ ] `prep-ship` — Ship creation
-- [ ] `prep-island` — Island creation
+- [x] `prep-ship` — Ship creation
+- [x] `prep-island` — Island creation
 - [ ] `prep-location` — Location prep
 - [ ] `prep-faction` — Faction prep
 - [ ] `prep-situation` — Situation prep
