@@ -99,10 +99,10 @@ project and need adaptation or are reference-only.
 
 ### Obsidian
 
-- [ ] `obsidian-markdown` — Obsidian Flavored Markdown reference
-- [ ] `obsidian-cli` — Obsidian CLI integration
-- [ ] `obsidian-json-canvas` — JSON canvas support
-- [ ] `obsidian-bases` — Obsidian Bases database layer
+- [x] `obsidian-markdown` — Obsidian Flavored Markdown reference
+- [x] `obsidian-cli` — Obsidian CLI integration
+- [x] `obsidian-json-canvas` — JSON canvas support
+- [x] `obsidian-bases` — Obsidian Bases database layer
 
 ### TTRPG / Campaign
 

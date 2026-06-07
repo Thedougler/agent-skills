@@ -78,12 +78,12 @@ filters:
 # NOT: exclude matches
 filters:
   not:
-    - file.inFolder("wiki/meta")
+    - file.inFolder("_meta")
 
 # Nested
 filters:
   and:
-    - file.inFolder("wiki/")
+    - file.inFolder("notes/")
     - or:
         - 'type == "concept"'
         - 'type == "entity"'
@@ -186,16 +186,16 @@ views:
 
 ---
 
-## Shattered Sea Wiki Templates
+## Example Templates
 
-### Full wiki dashboard (all non-meta pages)
+### Full vault dashboard (all non-meta pages)
 
 ```yaml
 filters:
   and:
-    - file.inFolder("wiki/")
+    - file.inFolder("notes/")
     - not:
-        - file.inFolder("wiki/meta")
+        - file.inFolder("notes/_meta")
 
 formulas:
   age: '(now() - file.ctime).days.round(0)'
@@ -206,7 +206,7 @@ properties:
 
 views:
   - type: table
-    name: "All Wiki Pages"
+    name: "All Pages"
     order:
       - file.name
       - type
@@ -218,12 +218,12 @@ views:
       direction: ASC
 ```
 
-### NPC tracker
+### People tracker
 
 ```yaml
 filters:
   and:
-    - file.inFolder("wiki/entities/npcs/")
+    - file.inFolder("people/")
     - 'file.ext == "md"'
 
 formulas:
@@ -269,7 +269,7 @@ views:
 ```yaml
 filters:
   and:
-    - file.inFolder("wiki/reference/")
+    - file.inFolder("sources/")
 
 views:
   - type: table
@@ -298,8 +298,7 @@ views:
 ## When to Use Bases
 
 Bases are **canonical infrastructure**, not optional visualizations. They are the primary
-mechanism for keeping overview and aggregation pages DRY (see CLAUDE.md § DRY & dynamic
-content).
+mechanism for keeping overview and aggregation pages DRY.
 
 ### Decision Tree
 
@@ -313,10 +312,10 @@ content).
 
 ### When creating or updating overview/aggregation pages
 
-1. **Always check** if a `.base` file in `wiki/meta/` already covers the data
+1. **Always check** if a `.base` file in your vault's meta/dashboard folder already covers the data
 2. **If a base exists:** embed it instead of writing a static table
 3. **If no base exists and the data is frontmatter-queryable:** create a `.base` file
-   in `wiki/meta/`, then embed it
+   in your meta folder, then embed it
 4. **If the data is NOT frontmatter-queryable** (e.g., narrative synthesis): static text
    is acceptable, but keep it compressed to 1–2 sentences with wikilinks
 
@@ -328,18 +327,16 @@ Bases **cannot read markdown body text**. They can only query:
 - Computed formulas from the above
 
 This means fields that need to appear in base views **must exist in frontmatter**.
-All toy fields (including `active_problem`) live in YAML frontmatter only.
-See CLAUDE.md § DRY & dynamic content.
+All queryable fields live in YAML frontmatter only.
 
 ---
 
 ## Where to Save
 
-Store `.base` files in `wiki/meta/` for vault dashboards:
-- `wiki/meta/dashboard.base`: main content view
-- `wiki/meta/entities.base`: entity tracker
-- `wiki/meta/npcs.base`: NPC tracker
-- `wiki/meta/sources.base`: source log
+Store `.base` files in a dedicated meta folder (e.g., `_meta/`, `_dashboards/`, or `meta/`) so vault-level views stay separate from content notes:
+- `_meta/dashboard.base`: main content view
+- `_meta/tracker.base`: entity/item tracker
+- `_meta/sources.base`: source log
 
 ---
 

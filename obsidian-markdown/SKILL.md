@@ -123,12 +123,11 @@ Obsidian renders YAML frontmatter as a Properties panel. Rules:
 ---
 type: entity
 title: "Note Title"
-campaign: "shattered-sea"
-created: 2026-04-08
-updated: 2026-04-08
+created: 2026-01-15
+updated: 2026-06-01
 tags:
-  - npc
-  - shattered-sea
+  - person
+  - location
 status: active
 related:
   - "[[Other Note]]"
@@ -231,8 +230,8 @@ This sentence has a footnote.[^1]
 
 ## DRY Content Patterns
 
-When writing or editing wiki pages, choose the most dynamic content pattern to avoid
-duplication. See CLAUDE.md § DRY & dynamic content for the full governance rules.
+When writing or editing notes, choose the most dynamic content pattern to avoid
+duplication — prefer embedded queries and bases over duplicated static text.
 
 ### When to use each pattern
 
