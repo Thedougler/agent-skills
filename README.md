@@ -116,7 +116,7 @@ project and need adaptation or are reference-only.
 - [x] `vault-health` — Vault integrity checks
 - [x] `cross-linker` — Add missing cross-references
 - [x] `tag-taxonomy` — Controlled tagging vocabulary
-- [ ] `session-ingest` — Session transcript processing
+- [x] `session-ingest` — Session transcript processing
 - [ ] `session-recap` — Session summaries
 - [ ] `world-update` — Campaign world state updates
 - [ ] `prep-session` — Session prep

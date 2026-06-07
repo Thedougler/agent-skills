@@ -1,11 +1,11 @@
 ---
 name: session-ingest
 description: >
-  Use when raw session transcript CSVs in audio/sessions/ need processing. Triggers:
+  Use when raw session transcript CSVs need processing. Triggers:
   "process the transcript", "mine the session", "clean the transcript", "what's in
   the session audio", "fix speakers", "who is Speaker 1", new session*.csv files in
-  audio/sessions/. Also use when combat stats need recording from session audio, or
-  when wiki needs updating from transcript data. Symptoms: Speaker 1/Unknown labels
+  your sessions directory. Also use when combat stats need recording from session audio,
+  or when wiki needs updating from transcript data. Symptoms: Speaker 1/Unknown labels
   in transcript, OOC chatter mixed with canon, fragmented 1-second utterances,
   unprocessed session audio.
 ---
@@ -53,8 +53,8 @@ digraph entry {
 
 Every invocation:
 
-1. List available parts: `ls audio/sessions/session{NN}-part*.m4a.csv`
-2. Check for working directory: `audio/sessions/session{NN}/`
+1. List available parts: `ls <sessions-dir>/session{NN}-part*.csv`
+2. Check for working directory: `<sessions-dir>/session{NN}/`
 3. If `handoff.md` exists → read it and resume where it says
 4. If `speaker-map.md` exists but no handoff → start Pass 2 (extraction)
 5. If neither exists → check parts for Speaker N labels → Pass 1 if needed, else straight to Pass 2
@@ -70,7 +70,7 @@ prose for wiki pages. Sandbox rules are in CLAUDE.md (always loaded).
 
 | File | Format | Location |
 |---|---|---|
-| Transcript parts | CSV: `ID,Speaker,Text` | `audio/sessions/session{NN}-part{PP}.m4a.csv` |
+| Transcript parts | CSV: `ID,Speaker,Text` | `<sessions-dir>/session{NN}-part{PP}.csv` |
 
 Each part is one audio segment (~250–1000 lines). The transcription tool applies
 the custom dictionary automatically — CSVs already have corrected spellings.
@@ -81,7 +81,7 @@ them in order: part00, part01, part02, etc.
 
 ## Working Directory
 
-Each session: `audio/sessions/session{NN}/`
+Each session: `<sessions-dir>/session{NN}/`
 
 All intermediate files live here. These are checkpoints — resume from the latest.
 
@@ -122,8 +122,8 @@ Full per-pass procedures, file formats, and the final-part wrap-up live in
 | Pass | Goal | Input → Output | Judgment ref |
 |---|---|---|---|
 | **1: Resolve Speakers** | Map every `Speaker N`/`Unknown` to a known identity with evidence + confidence. Skip entirely if all labels are known. | all part CSVs → `speaker-map.md` | `references/speaker-resolution.md` |
-| **1b: Retrain Profiles** | Feed speaker corrections back to voice profiles so future sessions have fewer unknowns. Runs automatically after Pass 1 if cold-pass chunks + WAVs exist in `Inbox/`. | `speaker-map.md` + `Inbox/sNN-chunk-*.md` + WAVs → updated voice profiles | `references/pass-architecture.md` |
-| **2: Extract & Recap** | One part per agent: classify IC/OOC/META, merge fragments, split scenes, extract tagged canon, then commit + handoff + **stop**. No wiki writes. | part CSV + `speaker-map.md` + `hot.md` → `recap.md` + `extracts.md` + `flags.md` (cumulative); `combat-summary.md` after final part | `references/extraction-targets.md` |
+| **1b: Retrain Profiles** | Feed speaker corrections back to voice profiles so future sessions have fewer unknowns. Runs automatically after Pass 1 if cold-pass chunks + WAVs exist in the inbox directory. | `speaker-map.md` + cold-pass chunks + WAVs → updated voice profiles | `references/pass-architecture.md` |
+| **2: Extract & Recap** | One part per agent: classify IC/OOC/META, merge fragments, split scenes, extract tagged canon, then commit + handoff + **stop**. No wiki writes. | part CSV + `speaker-map.md` + current world state file → `recap.md` + `extracts.md` + `flags.md` (cumulative); `combat-summary.md` after final part | `references/extraction-targets.md` |
 | **3: Wiki Integration** | Fold recap + extracts into the wiki via the existing ingest pipeline once `flags.md` is clear. | `recap.md` + `extracts.md` + `flags.md` → wiki files | load `ttrpg-wiki-ingest` (`references/transcript-ingest.md`) + `ttrpg-writing` |
 
 Pass-2 detail (the per-part 13-step procedure, scene-continuity-across-parts
@@ -164,15 +164,12 @@ add new work at the end.
 
 ## Known Speaker Labels
 
+Populate this table with your campaign's player-to-character mapping. This is project-specific and must be customized.
+
 | CSV Label | Identity | Notes |
 |---|---|---|
-| DM | Nick (game master) | Also voices all NPCs — context distinguishes |
-| Delmar | Delmar Fisk's player | |
-| Perrin | Perrin Black-Jaw's player | |
-| Jean Claude | Jean-Claude Tabarnack's player | |
-| Crissdalyn | Crissdalynn Khinriss's player | Label spelling != character spelling |
-| Speaker 1 | Usually Crissdalyn (mic drift) | Verify per session via speaker-resolution.md |
-| Speaker 5/6/7 | Varies — cross-talk, external audio | Low line counts; often DM or non-game audio |
+| DM | Game master | Also voices all NPCs — context distinguishes |
+| Player 1 | PC name / player name | (replace with your players) |
 | Speaker N | Unknown | Always resolve before Pass 2 |
 
 ---
@@ -199,7 +196,7 @@ After all parts (before Pass 3):
 
 After Pass 3:
 - Session note exists with wikilinks for all named entities
-- `wiki/hot.md` reflects end-of-session world state
+- Your current world state file reflects end-of-session world state
 
 ---
 
