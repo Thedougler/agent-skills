@@ -110,7 +110,7 @@ project and need adaptation or are reference-only.
 - [x] `ttrpg-wiki-ingest` — Ingest source material into the wiki
 - [x] `ttrpg-wiki-lint` — Health checks and auto-corrections
 - [x] `ttrpg-wiki-organize` — Vault file/folder restructuring
-- [ ] `ttrpg-wiki-query` — Query and search wiki data
+- [x] `ttrpg-wiki-query` — Query and search wiki data
 - [ ] `ttrpg-writing` — Prose quality for wiki content
 - [ ] `ttrpg-visual-aids` — Visual aid generation for sessions
 - [ ] `vault-health` — Vault integrity checks

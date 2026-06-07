@@ -3,7 +3,7 @@ name: ttrpg-wiki-query
 metadata:
   version: "1.0"
 description: >
-  The mandatory default method for finding anything in the Shattered Sea wiki. Use
+  The mandatory default method for finding anything in the campaign wiki. Use
   this ANY time you need in-world information — whether the user explicitly asks you
   to look something up, or you need context before answering, prepping, or writing.
   Invoke it BEFORE asserting, inventing, or assuming any campaign fact: NPCs,
@@ -13,16 +13,16 @@ description: >
   for", "does the wiki say", "search the wiki", "what's the current state of", "who
   is", "where is", "what happened with". Also trigger silently whenever you would
   otherwise guess a campaign detail — if you are not certain something is established
-  canon, search first. Every other Shattered Sea skill defers to this one for lookups.
-  Uses a tiered search (in-context index/hot → frontmatter → qmd semantic search):
+  canon, search first. Every other TTRPG skill defers to this one for lookups.
+  Uses a tiered search (in-context index/hot → frontmatter/keyword → semantic search):
   fast on easy lookups, comprehensive on hard ones.
 ---
 
-# TTRPG Wiki Query — Shattered Sea
+# TTRPG Wiki Query
 
 **This is how you find things. Use it before you state anything.**
 
-The campaign has 250+ wiki pages and you carry almost none of them in context. The
+The campaign wiki may have hundreds of pages and you carry almost none of them in context. The
 single worst failure mode in a sandbox wiki is **confidently inventing a fact that
 contradicts established canon** — a renamed NPC, a ship that sank two sessions ago, a
 faction that wants the opposite of what you said. This skill exists to make that
@@ -46,7 +46,7 @@ last, so paying for Tier 3 on a question Tier 1 already answered just wastes tim
 
 ### Tier 1 — What you already have (free)
 
-`wiki/index.md` and `wiki/hot.md` are cheap and often already in context.
+`<wiki>/index.md` and `<wiki>/hot.md` (or your project's equivalent files) are cheap and often already in context.
 
 - **`index.md`** is the master catalog — every page, by path, with its one-line summary.
   Use it to answer *"does a page exist, and where?"* and to turn a vague name into an
@@ -65,20 +65,20 @@ match. Two fast tools, no rerank latency:
 
 - **Grep the vault** for proper nouns, slugs, or distinctive phrases:
   ```bash
-  grep -rli "barnaby rook" wiki/        # which files mention it
-  grep -rn "summary:" wiki/entities/characters/  # scan summaries in a branch
+  grep -rli "barnaby rook" <wiki>/        # which files mention it
+  grep -rn "summary:" <wiki>/entities/characters/  # scan summaries in a branch
   ```
   Every file leads with a `summary:` frontmatter line written to answer *what is this
   right now, and why does it matter*. **Read summaries before opening full files** —
   often the summary is the whole answer, and you save the context budget.
 
-- **`qmd search`** — BM25 keyword search, no LLM, returns in well under a second. Best
+- **`<your-keyword-search-tool>`** — fast BM25/keyword search, no LLM. Best
   when you know the vocabulary (exact names, code-like identifiers, distinctive terms):
   ```bash
-  qmd search "Uncertainty dry dock La Vasca" -c shattered_sea_wiki
+  <your-keyword-search-tool> "character name or term" -c <your-collection>
   ```
 
-Then **Read the actual file** for the matched path. qmd and grep tell you *which* file;
+Then **Read the actual file** for the matched path. Keyword search and grep tell you *which* file;
 the file itself is the source of truth — read it directly (full content, line numbers,
 and you can see its wikilinks for the completeness pass below).
 
@@ -86,22 +86,20 @@ and you can see its wikilinks for the completeness pass below).
 
 Reach for this when you *don't* know the exact term: conceptual or thematic questions,
 fuzzy memory, synonyms, "anything we have about…", or when Tiers 1–2 came up empty or
-partial. `qmd query` runs hybrid retrieval (keyword + vector + reranking) and finds pages
-by *meaning*, not just words. It takes ~15–20s because of the rerank step — worth it for
-recall, wasteful for a lookup you could have grepped.
+partial. Semantic/vector search finds pages by *meaning*, not just words. It takes longer
+than keyword search — worth it for recall, wasteful for a lookup you could have grepped.
 
 ```bash
-qmd query "what favor does Nona want from Perrin" -c shattered_sea_wiki --json \
+<your-semantic-search-tool> "what favor does the NPC want from the party member" -c <your-collection> --json \
   | jq -r '.[] | "[\(.score)] \(.file)\n\(.snippet)\n"'
 ```
 
-The `jq` filter strips qmd's repeated per-result `context` blob and keeps only score,
-path, and snippet — far leaner on your context budget. Then Read the top files.
+If your tool returns verbose output, filter to score, path, and snippet to stay lean on context budget.
+Then Read the top files.
 
-For how to craft `lex` / `vec` / `hyde` queries, when to add an `intent`, and how to
-combine them for hard questions, read **`references/qmd-querying.md`**. The default
-single-line `qmd query "..."` form auto-expands and is the right starting point; reach
-for the structured forms when a plain query underperforms.
+If your project includes a reference guide for your semantic search tool's query modes
+(e.g. keyword-weighted, vector, hypothetical document expansion), read it when a plain
+query underperforms.
 
 ---
 
@@ -116,8 +114,7 @@ the pages it depends on — this is what makes context *comprehensive* rather th
 - **Read summaries first.** For each linked page, the `summary:` frontmatter usually tells
   you whether you need the full file. Open the body only when the summary is insufficient
   (the reading-order: summary → section → full).
-- **Pull current state.** If the entity appears in `hot.md` or an active situation
-  (`wiki/situations/active/`), that present-tense state overrides older page prose.
+- **Pull current state.** If the entity appears in your hot/current-state file or an active situation directory, that present-tense state overrides older page prose.
 
 Stop expanding when further pages stop changing the answer. The goal is *complete enough
 to be correct*, not *the whole vault*.
@@ -126,12 +123,13 @@ to be correct*, not *the whole vault*.
 
 ## Escalation to raw sources
 
-The canonical wiki (`shattered_sea_wiki`) is the default and usually sufficient. Only when
+The canonical wiki collection is the default and usually sufficient. Only when
 a compiled page is **missing or visibly incomplete** for what you need, search the raw
-sources — unprocessed GM notes, transcripts, and drafts:
+sources — unprocessed GM notes, transcripts, and drafts (if your project maintains a
+separate raw/draft collection):
 
 ```bash
-qmd query "<question>" -c shattered_sea_raw --json | jq -r '.[] | "[\(.score)] \(.file)\n\(.snippet)\n"'
+<your-semantic-search-tool> "<question>" -c <your-raw-collection> --json | jq -r '.[] | "[\(.score)] \(.file)\n\(.snippet)\n"'
 ```
 
 Treat raw hits as **draft, not settled canon** — flag that the fact came from raw material
@@ -145,26 +143,26 @@ should have, that's a signal the page needs ingesting; note it.
 How you close out a search determines whether the next step is trustworthy:
 
 - **Ground every claim in a path.** When you state a campaign fact, it should be traceable
-  to a file you read — reference it (`wiki/entities/.../barnaby-rook.md`). This lets the DM
+  to a file you read — reference it (e.g. `<wiki>/entities/.../character-slug.md`). This lets the DM
   verify and lets you catch your own drift.
 - **Be explicit about absence.** If the wiki genuinely has nothing, say
   *"No wiki page covers X"* — do not manufacture an answer. Absence is useful information
   (it usually means the page should be created, which routes to a `prep-*` skill).
 - **Surface contradictions, don't resolve them silently.** If two pages disagree, or a page
-  contradicts `hot.md`, present both and flag it per the discrepancy protocol — append to `wiki/discrepancy-log.md`, never quietly pick one.
+  contradicts the hot/current-state file, present both and flag it — append to your project's discrepancy log, never quietly pick one.
 
 ---
 
 ## Index freshness
 
-A write hook (`.claude/hooks/qmd-reindex.sh`) re-indexes the vault after wiki edits, so
-qmd's keyword search and file list stay current automatically — you don't manage this.
+If your project uses an auto-reindex hook, the search index stays current automatically
+after wiki edits — you don't manage this.
 
 One caveat worth knowing: vector **embeddings** are regenerated in the background and lag a
 little behind brand-new pages. So a page created moments ago in *this* session may not yet
-surface in `qmd query` semantic results. That's fine — for pages you just wrote you already
-have them in context, and grep / `qmd search` (keyword) catch them immediately. If
-`qmd status` ever shows the index badly stale, `qmd update` re-indexes on demand.
+surface in semantic results. That's fine — for pages you just wrote you already have them
+in context, and grep / keyword search catch them immediately. If the index appears stale,
+consult your project's reindex command.
 
 ---
 
@@ -172,15 +170,15 @@ have them in context, and grep / `qmd search` (keyword) catch them immediately. 
 
 | Need | Tool |
 |---|---|
-| Does a page exist / where is it | `wiki/index.md` (Tier 1) |
-| Current world state, live threads | `wiki/hot.md` (Tier 1) |
-| Find pages by exact name / term | `grep -rli` or `qmd search … -c shattered_sea_wiki` (Tier 2) |
-| Find pages by meaning / concept | `qmd query "…" -c shattered_sea_wiki --json \| jq …` (Tier 3) |
+| Does a page exist / where is it | `<wiki>/index.md` (Tier 1) |
+| Current world state, live threads | `<wiki>/hot.md` (Tier 1) |
+| Find pages by exact name / term | `grep -rli` or `<your-keyword-search-tool> … -c <collection>` (Tier 2) |
+| Find pages by meaning / concept | `<your-semantic-search-tool> "…" -c <collection> --json \| jq …` (Tier 3) |
 | Read a known page | Read the file directly (full content + wikilinks) |
-| Raw / unprocessed sources | `qmd … -c shattered_sea_raw` (escalation only) |
+| Raw / unprocessed sources | Search `<your-raw-collection>` (escalation only) |
 
 | Reference file | Read when |
 |---|---|
-| `references/qmd-querying.md` | Writing lex/vec/hyde queries, using `intent`, tuning a query that underperformed, or the collection/path map |
+| Your project's semantic search guide | Tuning queries, advanced query modes, collection/path map |
 
-Operational rules (auto-correct, wikilinks) are in `.claude/skills/ttrpg-llm-wiki-init/references/`. Sandbox rules are in CLAUDE.md (always loaded).
+Operational rules (auto-correct, wikilinks) are in your project's wiki-init skill references. Project rules are in CLAUDE.md (always loaded).
