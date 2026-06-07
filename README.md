@@ -122,7 +122,7 @@ project and need adaptation or are reference-only.
 - [x] `prep-session` — Session prep
 - [x] `prep-encounter` — Encounter design and calibration
 - [x] `prep-npc` — NPC creation and expansion
-- [ ] `prep-creature` — Creature/monster stat blocks
+- [x] `prep-creature` — Creature/monster stat blocks
 - [ ] `prep-dungeon` — Dungeon and adventure site design
 - [ ] `prep-ship` — Ship creation
 - [ ] `prep-island` — Island creation

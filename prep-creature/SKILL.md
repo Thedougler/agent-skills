@@ -1,19 +1,20 @@
 ---
 name: prep-creature
 description: >
-  Create or expand a creature or monster entry for the Shattered Sea campaign. Invoke
+  Create or expand a creature or monster entry for the campaign. Invoke
   for: "create stats for [creature]", "I need a [monster] for the encounter", "expand
   the entry for [creature type]", "make a homebrew monster", "design a [creature]",
   "statblock for [enemy]", "bestiary entry for [creature]", "named villain statblock",
   "make me a [monster]".
 ---
 
-> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in [`prep-family-standards`](../ttrpg-llm-wiki-init/references/prep-family-standards.md). Read it before generating; this file covers only what's specific to this content type.
-**Named entity or creature type?**
-- Named creature (specific individual): `wiki/entities/characters/npcs/{slug}.md` + statblock
-- Creature type/species lore: `wiki/lore/creatures/{slug}.md`
+> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in your project's `prep-family-standards.md` reference if one exists. Read it before generating; this file covers only what's specific to this content type.
 
-Read `wiki/system/party-combat-primer.md` before finalizing any stat calibration.
+**Named entity or creature type?**
+- Named creature (specific individual): `<wiki>/entities/characters/npcs/{slug}.md` + statblock
+- Creature type/species lore: `<wiki>/lore/creatures/{slug}.md`
+
+Read `<wiki>/system/party-combat-primer.md` before finalizing any stat calibration.
 Party primer Avoid flags apply to creature design.
 
 ---
@@ -33,10 +34,10 @@ Name the connecting PC or ask before generating.
 
 ## Creature Page Structure
 
-**Lore entry** (`wiki/lore/creatures/`): ecology, behavior, habitat, distinguishing
+**Lore entry** (`<wiki>/lore/creatures/`): ecology, behavior, habitat, distinguishing
 features, typical encounter role. DM-facing reference prose — not a novel.
 
-**Named entity** (`wiki/entities/characters/npcs/` or `wiki/entities/characters/minor/`):
+**Named entity** (`<wiki>/entities/characters/npcs/` or `<wiki>/entities/characters/minor/`):
 full NPC structure + integrated statblock. Use `prep-npc` workflow for the NPC page,
 then append the statblock in Fantasy Statblocks codeblock format.
 
@@ -71,7 +72,7 @@ villain design.
 
 Universal and entity fields are auto-completed by the write hook. You must author:
 
-- Lore entries (`wiki/lore/creatures/`): `type: lore`, `subtype: creature`
+- Lore entries (`<wiki>/lore/creatures/`): `type: lore`, `subtype: creature`
 - Named entities: handled by `prep-npc` frontmatter; append statblock to the body only
 
 ---
@@ -86,9 +87,9 @@ its habitat for lore entries. Skip for generic stat blocks embedded in encounter
 
 ## Filing
 
-- Lore entry: `wiki/lore/creatures/{slug}.md`
-- Named entity: `wiki/entities/characters/npcs/{slug}.md`
-- Add to `wiki/index.md` in appropriate section
+- Lore entry: `<wiki>/lore/creatures/{slug}.md`
+- Named entity: `<wiki>/entities/characters/npcs/{slug}.md`
+- Add to `<wiki>/index.md` in appropriate section
 - Add reciprocal links to all referenced entities
 - Commit: `feat: creature — {slug} — {one-line summary}`
 
@@ -114,5 +115,5 @@ descriptions.
 | `../ttrpg-writing/references/dm-reference-standards.md` | Writing lore entries, behavioral profiles |
 | `../ttrpg-writing/references/player-facing-prose.md` | Writing `[!read-aloud]` creature descriptions |
 | `../ttrpg-writing/references/callout-standard.md` | Callout type enforcement and conversion |
-| `../ttrpg-llm-wiki-init/references/auto-correct.md` | Fixing structural issues during or after content creation |
-| `../ttrpg-llm-wiki-init/references/wikilink-standards.md` | Creating or fixing wikilinks |
+| Your project's auto-correct reference (if it exists) | Fixing structural issues during or after content creation |
+| Your project's wikilink-standards reference (if it exists) | Creating or fixing wikilinks |
