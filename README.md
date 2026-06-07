@@ -117,7 +117,7 @@ project and need adaptation or are reference-only.
 - [x] `cross-linker` — Add missing cross-references
 - [x] `tag-taxonomy` — Controlled tagging vocabulary
 - [x] `session-ingest` — Session transcript processing
-- [ ] `session-recap` — Session summaries
+- [x] `session-recap` — Session summaries
 - [ ] `world-update` — Campaign world state updates
 - [ ] `prep-session` — Session prep
 - [ ] `prep-encounter` — Encounter design and calibration
