@@ -1,11 +1,11 @@
 ---
 name: job-scraper
-description: Scrapes Canadian job sites for new positions matching your profile. Deduplicates across runs. Triggers on job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
+description: Scrapes job sites for new positions matching your profile. Deduplicates across runs. Triggers on job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
 ---
 
 # Job Scraper
 
-Searches Canadian job boards using targeted queries, deduplicates against previously seen jobs and the application tracker, and presents new matches with a quick fit assessment.
+Searches job boards using targeted queries, deduplicates against previously seen jobs and the application tracker, and presents new matches with a quick fit assessment.
 
 ## Fetch Tools
 
@@ -69,11 +69,11 @@ BCjobs.ca blocks raw HTTP requests. Use Playwright headless browser:
 
 **Important:** BCjobs has low volume for trades — expect 0-5 results per query. Don't spend multiple queries if the first returns nothing relevant.
 
-#### Source D: Craigslist Comox Valley (WebFetch — local trades)
+#### Source D: Craigslist (WebFetch — local trades)
 
 WebFetch the Craigslist trades category search URLs from `search-queries.md`. Craigslist returns static HTML with listings in `<li>` elements containing title, location, compensation, and posting URL.
 
-**Individual posting URLs:** `https://comoxvalley.craigslist.org/trd/d/<slug>/<id>.html` — use defuddle-fetch on these for clean posting content.
+**Individual posting URLs:** `https://<region>.craigslist.org/trd/d/<slug>/<id>.html` — use defuddle-fetch on these for clean posting content.
 
 **Salary handling:** Compensation frequently shows $0 — this means "not listed", not unpaid. Do not filter Craigslist results on salary. Flag as "salary unlisted" instead.
 
