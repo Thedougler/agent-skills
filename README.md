@@ -50,7 +50,7 @@ project and need adaptation or are reference-only.
 - [x] `find-skills` — Discover installable skills
 - [x] `tdd` — Test-driven development framework
 - [x] `improve-codebase-architecture` — Architecture review and deepening
-- [ ] `create-agent` — Bootstrap modular AI agents with OpenRouter
+- [x] `create-agent` — Bootstrap modular AI agents with OpenRouter
 - [x] `enforced-in-code` — Code-enforced policy patterns
 
 ### Web / Vercel / Backend
