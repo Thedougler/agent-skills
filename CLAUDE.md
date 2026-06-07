@@ -1,10 +1,35 @@
 # Agent Skills
 
-Centralized skill library for all `ai-os` subprojects. Skills are copied here from their
-source projects so they can be reused or redistributed. To install a skill into a project,
-copy the relevant directory into that project's `.claude/skills/`.
+Centralized skill library for all `ai-os` subprojects. Skills live at
+[github.com/Thedougler/agent-skills](https://github.com/Thedougler/agent-skills).
 
 Skills marked with `*` were present identically in multiple projects — only one copy is kept here.
+
+## Installing skills into a project
+
+**Clone the repo (first time):**
+```bash
+git clone https://github.com/Thedougler/agent-skills.git
+```
+
+**Pull a single skill into a project:**
+```bash
+# From the agent-skills repo root
+cp -r <skill-name> /path/to/project/.claude/skills/
+
+# Example
+cp -r tdd ../shattered-sea/.claude/skills/
+```
+
+**Pull all skills at once:**
+```bash
+cp -r */ /path/to/project/.claude/skills/
+```
+
+**Keep skills up to date:**
+```bash
+git -C /path/to/agent-skills pull
+```
 
 ## Source projects
 
