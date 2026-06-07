@@ -1,7 +1,7 @@
 ---
 name: prep-dungeon
 description: >
-  Design a dungeon, lair, ruin, or adventure site for the Shattered Sea campaign using
+  Design a dungeon, lair, ruin, or adventure site for the campaign using
   phased generation. Invoke for: "design a dungeon", "prep an adventure site", "build a
   lair for [creature]", "create a ruin", "I need a dungeon for this session", "map out
   [underground/submerged/ruined location]", "key this dungeon", any multi-room site that
@@ -10,11 +10,11 @@ description: >
   with prep-encounter for combat calibration and prep-npc for inhabitants.
 ---
 
-> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in [`prep-family-standards`](../ttrpg-llm-wiki-init/references/prep-family-standards.md). Read it before generating; this file covers only what's specific to this content type.
+> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in your project's `prep-family-standards.md` reference if one exists. Read it before generating; this file covers only what's specific to this content type.
 
 Read these before generating any dungeon content:
-1. `wiki/hot.md` — current campaign state, active faction clocks
-2. `wiki/system/party-combat-primer.md` — party combat patterns, Avoid flags (binding)
+1. `<wiki>/hot.md` — current campaign state, active faction clocks
+2. `<wiki>/system/party-combat-primer.md` — party combat patterns, Avoid flags (binding)
 
 ---
 
@@ -220,13 +220,13 @@ Universal and entity fields are auto-completed by the write hook. You must autho
 
 ## Filing
 
-Path: `wiki/entities/places/dungeons/slug.md`
+Path: `<wiki>/entities/places/dungeons/slug.md`
 
 After writing:
-1. Add entry to `wiki/index.md` under `## entities/places/dungeons`
-2. Verify all wikilinks resolve (`rg --files wiki | rg -i "slug"`)
+1. Add entry to `<wiki>/index.md` under the appropriate section
+2. Verify all wikilinks resolve (`rg --files <wiki> | rg -i "slug"`)
 3. Add reciprocal links to all referenced entities
-4. If the dungeon has a faction clock: add or update entry in `wiki/hot.md`
+4. If the dungeon has a faction clock: add or update entry in `<wiki>/hot.md`
 5. Commit: `feat: dungeon — {slug} — {one-line summary}`
 
 ---
@@ -235,7 +235,7 @@ After writing:
 
 Before writing any wikilink, verify the target exists:
 ```bash
-rg --files wiki | rg -i "name-fragment"
+rg --files <wiki> | rg -i "name-fragment"
 ```
 If the target doesn't exist, either create a stub or use plain text. Dead wikilinks
 silently break the vault.
@@ -246,7 +246,7 @@ silently break the vault.
 
 Do not invent stat values, DCs, or damage dice. For any mechanical value:
 1. Look up the stat block in the rules reference
-2. Cross-reference with `wiki/system/party-combat-primer.md` for party-specific adjustments
+2. Cross-reference with `<wiki>/system/party-combat-primer.md` for party-specific adjustments
 3. Check party Avoid flags — if your encounter would violate one, redesign
 
 Route complex encounters to `prep-encounter` for full calibration.
@@ -268,5 +268,5 @@ voice, anti-slop pass, and callout types apply to every dungeon page.
 | `../sandbox-narrative/references/SANDBOX-PIPELINE.md` | Multi-pass pipeline reference (this skill's pipeline is derived from it) |
 | `../ttrpg-writing/references/dm-reference-standards.md` | OSE formatting, Bryce Lynch, Skerples, Alexandrian standards |
 | `../ttrpg-writing/references/player-facing-prose.md` | Read-aloud prose mode |
-| `../ttrpg-llm-wiki-init/references/auto-correct.md` | Fixing structural issues during or after content creation |
-| `../ttrpg-llm-wiki-init/references/wikilink-standards.md` | Creating or fixing wikilinks |
+| Your project's auto-correct reference (if it exists) | Fixing structural issues during or after content creation |
+| Your project's wikilink-standards reference (if it exists) | Creating or fixing wikilinks |
