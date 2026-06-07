@@ -138,9 +138,9 @@ project and need adaptation or are reference-only.
 
 ### Job Search
 
-- [ ] `job-application-assistant` — Fit eval, CV/cover-letter drafting, interview prep
-- [ ] `job-scraper` — Scrape Canadian job boards, deduplicate across runs
-- [ ] `upskill` — Identify skill gaps from job postings
+- [x] `job-application-assistant` — Fit eval, CV/cover-letter drafting, interview prep
+- [x] `job-scraper` — Scrape job boards, deduplicate across runs
+- [x] `upskill` — Identify skill gaps from job postings
 
 ## Hooks (`hooks/`)
 

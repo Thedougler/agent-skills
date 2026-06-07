@@ -22,7 +22,7 @@ Three tools are available for fetching web content. Choose by **task**, not by s
 ## Invocation
 
 - "Find new jobs" / "Scrape for jobs" / "Any new positions?" / `/scrape`
-- Focus area: `/scrape painting` or `/scrape tech`
+- Focus area: `/scrape <category>` or `/scrape tech`
 - All categories: `/scrape broad`
 
 ## Execution Steps
@@ -101,15 +101,15 @@ WorkBC is a JavaScript SPA — WebFetch returns an empty shell. Use Playwright h
 
 Run broad WebSearch queries (without `site:` filters) to catch listings from boards not covered by Sources A-F — ZipRecruiter, Glassdoor, company career pages, etc.:
 ```
-painter jobs Courtenay BC 2026
-construction labourer Comox Valley BC hiring
+<role> jobs <your-location> 2026
+<role> <your-region> hiring
 ```
 
 Use defuddle-fetch on individual listing URLs from results for clean content. **Most results will be aggregator/category pages — skip those.**
 
 #### Source H: LinkedIn (secondary — WebSearch discovery)
 
-Use WebSearch: `site:linkedin.com/jobs "painter" "British Columbia"`
+Use WebSearch: `site:linkedin.com/jobs "<role>" "<your-region>"`
 
 Then defuddle-fetch individual LinkedIn job URLs for clean job descriptions.
 
@@ -121,14 +121,14 @@ For each job found across all sources:
 3. Skip if the company+role appears in `job_search_tracker.csv`
 4. Skip jobs with expired deadlines or marked as closed
 5. Skip jobs outside the geographic range (see Location Filter in `search-queries.md`)
-6. Skip jobs below $23/hr minimum
+6. Skip jobs below the minimum salary threshold configured in `search-queries.md`
 
 ### Step 3: Quick Fit Assessment
 
 For each new job, rapid fit check (NOT the full evaluation — just a signal):
 
-- **High**: Role directly involves core skills (painting, trades, hands-on tech)
-- **Medium**: Role is adjacent to experience (construction, maintenance, entry-level dev)
+- **High**: Role directly involves your core skills (see candidate profile)
+- **Medium**: Role is adjacent to your experience
 - **Low**: Role requires significant skills not held
 
 ### Step 4: Store
