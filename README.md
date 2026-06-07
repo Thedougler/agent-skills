@@ -40,22 +40,118 @@ cp -r agent-skills/tdd my-project/.claude/skills/tdd
 > need adaptation. Skills are being generalized over time — check the SKILL.md
 > before assuming portability.
 
-## What's here
+## Skill index
 
-**85 skills** across six domains, plus **9 hooks** and **4 subagents**.
+Checked skills are reusable as-is. Unchecked skills were built for a specific
+project and need adaptation or are reference-only.
 
-| Domain | Count | Examples |
-|---|---|---|
-| TTRPG / Campaign | 31 | `prep-npc`, `session-ingest`, `ttrpg-wiki-lint` |
-| Mobile / React Native | 16 | `expo-deployment`, `react-native-best-practices` |
-| Web / Backend | 16 | `vercel-react-best-practices`, `supabase`, `workers-best-practices` |
-| Obsidian / OpenRouter | 9 | `obsidian-markdown`, `openrouter-models` |
-| Job Search | 3 | `job-application-assistant`, `job-scraper`, `upskill` |
-| General | 10 | `tdd`, `skill-creator`, `find-skills` |
+### General / Cross-project
 
-See [CLAUDE.md](CLAUDE.md) for the full index with descriptions.
+- [x] `skill-creator` — Create, improve, and benchmark skills
+- [x] `find-skills` — Discover installable skills
+- [ ] `tdd` — Test-driven development framework
+- [ ] `improve-codebase-architecture` — Architecture review and deepening
+- [ ] `create-agent` — Bootstrap modular AI agents with OpenRouter
+- [ ] `enforced-in-code` — Code-enforced policy patterns
+- [ ] `continuous-self-improvement` — Wiki infrastructure self-optimization loop
+- [ ] `organize` — Alias for ttrpg-wiki-organize
+- [ ] `cli-improvement` — sea CLI enhancement patterns
+- [ ] `player-view-dev` — Player-view NiceGUI dev tooling
 
-### Hooks (`hooks/`)
+### Web / Vercel / Backend
+
+- [ ] `vercel-react-best-practices` — React/Next.js performance (70 rules)
+- [ ] `vercel-react-native-skills` — Vercel for React Native
+- [ ] `deploy-to-vercel` — Vercel deployment workflows
+- [ ] `web-perf` — Web performance optimization via Chrome DevTools
+- [ ] `web-design-guidelines` — Web Interface Guidelines compliance
+- [ ] `ui-ux-pro-max` — UX/UI best practices (50+ styles, 161 palettes)
+- [ ] `use-dom` — Expo DOM components for web-to-native migration
+- [ ] `supabase` — Supabase database and auth
+- [ ] `supabase-postgres-best-practices` — Postgres optimization
+- [ ] `workers-best-practices` — Cloudflare Workers patterns
+- [ ] `durable-objects` — Cloudflare Durable Objects
+- [ ] `wrangler` — Wrangler CLI reference
+- [ ] `agents-sdk` — Cloudflare Agents SDK
+- [ ] `sandbox-sdk` — Cloudflare Sandbox SDK
+- [ ] `db-reset` — NextTurn SQLite database reset
+
+### Mobile / React Native
+
+- [ ] `react-native-best-practices` — React Native performance patterns
+- [ ] `expo-cicd-workflows` — Expo CI/CD with EAS
+- [ ] `expo-deployment` — Expo app deployment (iOS, Android, web)
+- [ ] `expo-dev-client` — Expo dev client setup
+- [ ] `expo-module` — Expo native modules (Swift, Kotlin)
+- [ ] `expo-observe` — EAS Observe metrics and monitoring
+- [ ] `expo-tailwind-setup` — Tailwind CSS v4 in Expo
+- [ ] `expo-api-routes` — Expo Router API routes
+- [ ] `expo-brownfield` — Brownfield Expo integration
+- [ ] `expo-ui-swiftui` — SwiftUI views in Expo
+- [ ] `expo-ui-jetpack-compose` — Jetpack Compose views in Expo
+- [ ] `building-native-ui` — Native component development
+- [ ] `native-data-fetching` — Network requests and data fetching
+- [ ] `add-app-clip` — iOS App Clips
+- [ ] `upgrading-expo` — Expo SDK version upgrades
+- [ ] `eas-update-insights` — EAS Update health monitoring
+
+### OpenRouter
+
+- [ ] `openrouter-models` — Model selection and pricing reference
+- [ ] `openrouter-typescript-sdk` — TypeScript SDK usage
+- [ ] `openrouter-usage` — Usage and cost querying
+- [ ] `openrouter-image-gen` — Image generation via OpenRouter
+- [ ] `openrouter-image-edit` — Image editing via OpenRouter
+
+### Obsidian
+
+- [ ] `obsidian-markdown` — Obsidian Flavored Markdown reference
+- [ ] `obsidian-cli` — Obsidian CLI integration
+- [ ] `obsidian-json-canvas` — JSON canvas support
+- [ ] `obsidian-bases` — Obsidian Bases database layer
+
+### TTRPG / Campaign
+
+- [ ] `ttrpg-llm-wiki-init` — Foundation skill for shattered-sea sessions
+- [ ] `ttrpg-wiki-ingest` — Ingest source material into the wiki
+- [ ] `ttrpg-wiki-lint` — Health checks and auto-corrections
+- [ ] `ttrpg-wiki-organize` — Vault file/folder restructuring
+- [ ] `ttrpg-wiki-query` — Query and search wiki data
+- [ ] `ttrpg-writing` — Prose quality for wiki content
+- [ ] `ttrpg-visual-aids` — Visual aid generation for sessions
+- [ ] `vault-health` — Vault integrity checks
+- [ ] `cross-linker` — Add missing cross-references
+- [ ] `tag-taxonomy` — Controlled tagging vocabulary
+- [ ] `session-ingest` — Session transcript processing
+- [ ] `session-recap` — Session summaries
+- [ ] `world-update` — Campaign world state updates
+- [ ] `prep-session` — Session prep
+- [ ] `prep-encounter` — Encounter design and calibration
+- [ ] `prep-npc` — NPC creation and expansion
+- [ ] `prep-creature` — Creature/monster stat blocks
+- [ ] `prep-dungeon` — Dungeon and adventure site design
+- [ ] `prep-ship` — Ship creation
+- [ ] `prep-island` — Island creation
+- [ ] `prep-location` — Location prep
+- [ ] `prep-faction` — Faction prep
+- [ ] `prep-situation` — Situation prep
+- [ ] `prep-hb-item` — Homebrew item creation
+- [ ] `pc-combat-primer` — PC combat profiles
+- [ ] `sandbox-narrative` — Sandbox narrative generation
+- [ ] `live-co-dm` — Live co-DM with voice profiling
+- [ ] `live-transcription` — Session audio transcription
+- [ ] `live-transcription-workspace` — Live transcription workspace
+- [ ] `roll-dice` — Dice rolling utility
+- [ ] `daily-update` — Daily vault updates
+- [ ] `new-wiki-entry` — Wiki entry creation with frontmatter
+
+### Job Search
+
+- [ ] `job-application-assistant` — Fit eval, CV/cover-letter drafting, interview prep
+- [ ] `job-scraper` — Scrape Canadian job boards, deduplicate across runs
+- [ ] `upskill` — Identify skill gaps from job postings
+
+## Hooks (`hooks/`)
 
 Shell scripts that fire on Claude Code tool events (`PreToolUse` / `PostToolUse`).
 Covers Python formatting/linting, TypeScript formatting, env/lockfile guards, and
@@ -63,7 +159,7 @@ wiki-specific automation (frontmatter, wikilink checks, index regen).
 
 See [hooks/README.md](hooks/README.md) for wiring instructions.
 
-### Subagents (`agents/`)
+## Subagents (`agents/`)
 
 Specialist agent definitions dispatched via the `Agent` tool for focused subtasks:
 wiki content review, lore consistency checking, TypeScript type checking, and
