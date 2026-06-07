@@ -51,7 +51,7 @@ project and need adaptation or are reference-only.
 - [x] `tdd` — Test-driven development framework
 - [x] `improve-codebase-architecture` — Architecture review and deepening
 - [ ] `create-agent` — Bootstrap modular AI agents with OpenRouter
-- [ ] `enforced-in-code` — Code-enforced policy patterns
+- [x] `enforced-in-code` — Code-enforced policy patterns
 
 ### Web / Vercel / Backend
 

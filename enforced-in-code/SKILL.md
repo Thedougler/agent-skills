@@ -27,7 +27,7 @@ digraph enforce {
   PERMISSION [label="settings.json\npermissions.deny"];
   PRE_HOOK [label="PreToolUse hook\n(exit 2 to block)"];
   POST_HOOK [label="PostToolUse hook\n(auto-fix silently)"];
-  LINT [label="sea lint rule\n(batch catch + --fix)"];
+  LINT [label="Linter/CI rule\n(batch catch + --fix)"];
   RULE [label=".claude/rules/*.md\n(path-scoped guidance)"];
   CLAUDEMD [label="CLAUDE.md\n(universal guidance)"];
   SKILL [label="Skill guidance\n(last resort)"];
@@ -52,7 +52,7 @@ digraph enforce {
 | 1 | `permissions.deny` | 0 | No | Block a tool pattern outright (e.g., `Bash(rm -rf *)`) |
 | 2 | PreToolUse hook | ~0 (runs silently) | Only on block | Custom blocking logic (e.g., reject .env edits) |
 | 3 | PostToolUse hook | ~0 (runs silently) | Only on warning | Auto-fix after every write (e.g., frontmatter, formatting) |
-| 4 | `sea lint` rule | 0 until run | On explicit run | Batch detection, cross-file checks, things too slow for hooks |
+| 4 | Linter / CI check | 0 until run | On explicit run | Batch detection, cross-file checks, things too slow for hooks |
 | 5 | `.claude/rules/*.md` | ~0 until path match | Yes, on file access | Path-scoped guidance (loads only for matching files) |
 | 6 | `CLAUDE.md` | Always loaded | Yes, every turn | Universal behavioral guidance |
 | 7 | Memory | First 200 lines | Yes, at session start | Cross-session facts the agent should know |
@@ -82,9 +82,8 @@ try: print(json.loads(raw).get('file_path', ''))
 except: print('')
 " 2>/dev/null || true)
 
-# Guard: only check relevant files
+# Guard: only check relevant files — adapt the pattern to your project
 [[ "$FILE" == *.md ]] || exit 0
-[[ "$FILE" == */wiki/* ]] || exit 0
 
 # Check condition — exit 2 to block, 0 to allow
 if some_check_fails "$FILE"; then
@@ -103,37 +102,37 @@ Register in `.claude/settings.json`:
 
 Same shell pattern, but always `exit 0`. Fix the file in-place or emit a warning to stderr. The agent sees stderr output as tool feedback.
 
-### Adding a sea lint rule
+### Adding a linter / CI rule
 
-Add a check function in `packages/lib/src/lint.ts`. Register it in the main `lint()` function's check loop. Use `--fix` for auto-correctable variants.
+Add a check to your project's existing linter (ESLint, Ruff, custom lint script, etc.) or CI pipeline. Prefer `--fix` mode for auto-correctable violations. This is the right layer for checks that are too expensive to run on every file save but should catch issues before commit or merge.
 
 ### Adding a path-scoped rule
 
 Create `.claude/rules/<name>.md`:
 ```markdown
 ---
-paths: ["wiki/entities/characters/**"]
+paths: ["src/components/**"]
 ---
-NPC files must use terse DM-reference prose, not fiction. Every sentence should give the DM an actionable fact.
+Component files must export a named function, not an arrow function assigned to a const.
 ```
 
 Rules without `paths:` load at session start (same cost as CLAUDE.md). Rules with `paths:` load only when the agent reads a matching file — zero cost otherwise.
 
-## Worked Example
+## Worked Examples
 
-**Problem:** "Agents keep writing YAML block scalars in frontmatter summaries."
+**Problem:** "Agent keeps leaving `console.log` statements in committed code."
 
-1. Mechanical? **Yes** — regex can detect `>-` or `|` after `summary:`.
-2. Block or correct? **Correct** — the content is fine, just the format.
-3. Hook or lint? **Hook** — fast enough for every edit, single-file check.
-4. **Solution:** Add normalization to `fix_frontmatter.py` (already runs on every PostToolUse write). Zero new infrastructure.
+1. Mechanical? **Yes** — regex can detect `console.log(` in `.ts`/`.js` files.
+2. Block or correct? **Correct** — remove them automatically.
+3. Hook or lint? **Linter** — already part of ESLint (`no-console` rule). Enable it with `--fix`.
+4. **Solution:** Enable the existing lint rule in your ESLint config. Zero new infrastructure.
 
-**Problem:** "NPC prose reads like fiction instead of DM reference."
+**Problem:** "Agent writes migration files but forgets to add a rollback."
 
-1. Mechanical? **Partially** — regex can flag obvious patterns (emotional framing, atmospheric openers). But prose quality is a judgment call.
+1. Mechanical? **Partially** — can check that a migration file contains both `up` and `down` exports via regex. But whether the rollback is *correct* is a judgment call.
 2. **Solution:** Two layers:
-   - **Layer 4:** Add a prose-style check to `packages/lib/src/lint.ts` for the mechanical patterns.
-   - **Layer 5:** Add `.claude/rules/npc-prose.md` scoped to `wiki/entities/characters/**` for the judgment guidance.
+   - **Layer 3:** PostToolUse hook that checks newly written `migrations/**` files for a `down` export and warns if absent.
+   - **Layer 5:** `.claude/rules/migrations.md` scoped to `migrations/**` explaining what a valid rollback looks like.
 
 ## When Automation Isn't Possible
 
@@ -149,7 +148,7 @@ If a problem truly can't be addressed in code at all — say, a creative directi
 
 - **One-off problems** — if it happened once, fix it once. Don't build infrastructure.
 - **Rapidly evolving standards** — if the rule is still being figured out, use CLAUDE.md or a skill until it stabilizes, then push it down the stack.
-- **Cross-file semantic checks** — if the check requires understanding relationships across many files, it belongs in `sea lint` (batch), not a hook (per-file).
+- **Cross-file semantic checks** — if the check requires understanding relationships across many files, it belongs in a linter/CI rule (batch), not a hook (per-file).
 
 ## Red Flags
 
@@ -159,6 +158,6 @@ If you catch yourself doing any of these, stop and push the fix down the stack:
 |---|---|
 | Add a reminder to a skill | Add a hook or lint rule |
 | Write "remember to X" in CLAUDE.md | Check if a PostToolUse hook can do X automatically |
-| Manually fix the same formatting issue twice | Add it to `fix_frontmatter.py` or a PostToolUse hook |
+| Manually fix the same formatting issue twice | Add it to a PostToolUse hook or formatter config |
 | Tell the agent to "always check Y" | Make a hook that checks Y |
-| Add a rule that could be a regex | Add it to `sea lint` with `--fix` |
+| Add a rule that could be a regex | Add it to your linter with `--fix` |
