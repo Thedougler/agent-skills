@@ -106,7 +106,7 @@ project and need adaptation or are reference-only.
 
 ### TTRPG / Campaign
 
-- [ ] `ttrpg-llm-wiki-init` — Foundation skill for shattered-sea sessions
+- [x] `ttrpg-llm-wiki-init` — Foundation skill for shattered-sea sessions
 - [ ] `ttrpg-wiki-ingest` — Ingest source material into the wiki
 - [ ] `ttrpg-wiki-lint` — Health checks and auto-corrections
 - [ ] `ttrpg-wiki-organize` — Vault file/folder restructuring

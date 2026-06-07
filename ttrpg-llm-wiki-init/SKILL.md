@@ -111,12 +111,12 @@ whole check — no manual scanning or diffing.
 
 Run the linter to surface vault health — it's the engine, don't hand-check files:
 ```bash
-sea lint --summary    # one line: errors · warnings · quality
+<your-lint-command> --summary    # one line: errors · warnings · quality
 ```
 If there are **errors**, regenerate the persistent DM queue and point the DM at it — these are
 decisions that must not be forgotten:
 ```bash
-sea lint --report     # refreshes wiki/dm/review-queue.md
+<your-lint-command> --report     # refreshes wiki/dm/review-queue.md
 ```
 Surface the open-decision count in the health line below. Do **not** silently grind the whole
 backlog at session start — route deliberate cleanup through `ttrpg-wiki-lint`.
