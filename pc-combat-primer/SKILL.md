@@ -29,7 +29,7 @@ The party combat profile is what `prep-encounter` reads. The PC profiles feed it
 
 Before any primer work, read:
 1. The PC's character sheet: `<wiki>/system/players/{pc-slug}-sheet.md`
-   - **If this file doesn't exist:** check for a PDF in `.raw/characters/` or
+   - **If this file doesn't exist:** check for a PDF in your project's raw/characters directory or
      `<wiki>/entities/characters/pcs/` or a similar location. If a PDF exists, convert it first using
      `references/CHARACTER-SHEET-CONVERSION.md`. The markdown sheet is the canonical
      mechanical source for all downstream calculations.
