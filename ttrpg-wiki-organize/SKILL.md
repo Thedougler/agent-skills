@@ -87,20 +87,20 @@ it against the governing principles.
 
 ```bash
 # File count per directory (sorted by count, descending)
-find wiki -type f -name '*.md' | sed 's|/[^/]*$||' | sort | uniq -c | sort -rn
+find <wiki> -type f -name '*.md' | sed 's|/[^/]*$||' | sort | uniq -c | sort -rn
 
 # Directories with only 1-2 files (candidates for flattening)
-find wiki -type f -name '*.md' | sed 's|/[^/]*$||' | sort | uniq -c | sort -n | awk '$1 <= 2'
+find <wiki> -type f -name '*.md' | sed 's|/[^/]*$||' | sort | uniq -c | sort -n | awk '$1 <= 2'
 
 # Directories with 40+ files (candidates for subdivision)
-find wiki -type f -name '*.md' | sed 's|/[^/]*$||' | sort | uniq -c | sort -rn | awk '$1 >= 40'
+find <wiki> -type f -name '*.md' | sed 's|/[^/]*$||' | sort | uniq -c | sort -rn | awk '$1 >= 40'
 ```
 
 ### Depth scan
 
 ```bash
-# Deepest paths (should be ≤4 levels below wiki/)
-find wiki -type f -name '*.md' | awk -F/ '{print NF-1, $0}' | sort -rn | head -10
+# Deepest paths (should be ≤4 levels below <wiki>/)
+find <wiki> -type f -name '*.md' | awk -F/ '{print NF-1, $0}' | sort -rn | head -10
 ```
 
 ### Path-prediction test
@@ -112,7 +112,7 @@ the structure has a navigability problem.
 ### Type/path alignment
 
 ```bash
-sea lint 2>&1 | grep -i "type-path-mismatch"
+<your-lint-command> 2>&1 | grep -i "type-path-mismatch"
 ```
 
 ### Produce a findings table
@@ -202,7 +202,7 @@ For each batch, list:
 - Target directory (create if missing)
 - Frontmatter fields to update (`subtype`, possibly `type`)
 
-**If more than 10 ACT files: create a `wiki/work-queue.md` entry BEFORE
+**If more than 10 ACT files: create a `<wiki>/work-queue.md` entry BEFORE
 touching any files.**
 
 ---
@@ -213,12 +213,12 @@ For each batch, in this exact order:
 
 ### 4a. Create target directory if needed
 ```bash
-mkdir -p wiki/entities/places/planes
+mkdir -p <wiki>/entities/places/planes   # adapt path to your structure
 ```
 
 ### 4b. Move files with git mv
 ```bash
-git mv wiki/entities/places/elemental-plane-of-water.md wiki/entities/places/planes/
+git mv <wiki>/entities/places/elemental-plane-of-water.md <wiki>/entities/places/planes/
 ```
 
 **Always `git mv`.** Never `mv` then `git add`. `git mv` preserves
@@ -232,7 +232,7 @@ defines the mapping — check `frontmatter-defaults.md` if unsure.
 ### 4d. Check for explicit path references
 
 ```bash
-grep -r "entities/places/elemental-plane-of-water" wiki/ packages/ .claude/ --include="*.md" --include="*.ts" --include="*.py"
+grep -r "entities/places/elemental-plane-of-water" <wiki>/ packages/ .claude/ --include="*.md" --include="*.ts" --include="*.py"
 ```
 
 Obsidian wikilinks (`[[slug]]`) resolve by filename, not path — most survive
@@ -252,13 +252,13 @@ Run validation BEFORE committing:
 
 ```bash
 # New errors introduced by the move?
-sea lint --min-severity error 2>&1 | head -30
+<your-lint-command> --min-severity error 2>&1 | head -30
 
 # Broken wikilinks?
-sea lint 2>&1 | grep "broken-wikilink"
+<your-lint-command> 2>&1 | grep "broken-wikilink"
 
 # Type/path mismatches fixed or introduced?
-sea lint 2>&1 | grep "type-path-mismatch"
+<your-lint-command> 2>&1 | grep "type-path-mismatch"
 ```
 
 **A batch is clean when the linter reports zero new errors.** Fix issues
@@ -282,7 +282,7 @@ One commit per batch. Prefix: `fix:` for structural corrections.
 
 After all ACT batches are committed:
 1. Close the work-queue entry if one exists
-2. Run `sea lint --summary`
+2. Run `<your-lint-command> --summary` (or equivalent)
 3. Report to the DM:
 
 ```
@@ -307,15 +307,14 @@ same batch protocol.
 
 ## Structural Patterns Worth Knowing
 
-These are patterns this wiki has adopted. They aren't sacred — they're the
-current state. Evaluate them against the principles if they seem wrong.
+Document your own wiki's settled patterns here. These examples illustrate
+the kind of pattern worth recording — adapt or replace them for your project.
 
 | Pattern | Rationale |
 |---|---|
-| `entities/creatures/` with `type: monster` | 129 stat-block files; all skills/hooks reference this path. Moving would be a multi-system refactor — propose to DM if warranted, never unilateral. |
-| `narrative-islands/` not `islands/` | Distinguishes plot-device clusters from geographic `entities/places/islands/` |
-| Settlement subfolders (`settlements/calveno/`) | P4 depth-proportional-to-engagement — high-engagement locations earn subfolders |
+| `entities/creatures/` with `type: monster` | High file count; all skills/hooks reference this path — moving is a multi-system refactor |
 | `-dm.md` suffix files next to counterpart | Audience-split colocation; `audience:` field does the filtering |
+| Settlement subfolders for high-engagement locations | P4 depth-proportional-to-engagement |
 | `rules/backgrounds/`, `rules/classes/`, etc. | Extensions natural to a 5e campaign |
 
 **These patterns can change.** If the content has shifted and a pattern no
@@ -359,6 +358,6 @@ longer serves navigability, propose the change with reasoning.
 
 | File | Load when |
 |---|---|
-| `.claude/skills/ttrpg-llm-wiki-init/references/universal-structure.md` | Understanding the original design intent and content decision tree |
-| `.claude/skills/ttrpg-llm-wiki-init/references/frontmatter-defaults.md` | Updating frontmatter after a move |
-| `.claude/skills/ttrpg-llm-wiki-init/references/auto-correct.md` | Commit message format and escalation protocol |
+| Your project's structure guide | Understanding the original design intent and content decision tree |
+| Your project's frontmatter schema | Updating frontmatter after a move |
+| Your project's commit conventions | Commit message format and escalation protocol |
