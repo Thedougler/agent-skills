@@ -33,7 +33,7 @@ git -C /path/to/agent-skills pull
 
 ## Git
 
-After any change to this repo, commit and push to `Thedougler/agent-skills` (main) as the final step of every operation.
+After any change to this repo, commit and push to `Thedougler/agent-skills` (main) as the final step of every operation. Use the `gh` CLI for all GitHub operations (PRs, issues, checks): `gh pr create`, `gh issue list`, `gh run list`, etc.
 
 ## Source projects
 
