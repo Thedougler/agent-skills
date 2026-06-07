@@ -1,19 +1,20 @@
 ---
 name: prep-hb-item
 description: >
-  Create a homebrewed D&D 5e item for the Shattered Sea campaign. Invoke for:
+  Create a homebrewed D&D 5e item for the campaign. Invoke for:
   "homebrew an item for [PC]", "design a [item concept]", "make a custom [item]",
   "I want an item that does [effect]", "create a magic item for [PC]",
   "invent an item for the setting". Do NOT use for standard 5e items that already
-  exist in RAW — check wiki/entities/items/ first. Symptoms requiring this skill:
+  exist in RAW — check the wiki's items directory first. Symptoms requiring this skill:
   desired item doesn't exist in RAW, needs setting-specific mechanics or flavor,
   or the DM wants to tie an item to a specific PC's story thread.
 ---
 
-> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in [`prep-family-standards`](../ttrpg-llm-wiki-init/references/prep-family-standards.md). Read it before generating; this file covers only what's specific to this content type.
+> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in your project's `prep-family-standards.md` reference if one exists. Read it before generating; this file covers only what's specific to this content type.
+
 ## Prerequisites
 
-Check `wiki/index.md` for existing item stubs before creating. A reskinned RAW item
+Check `<wiki>/index.md` for existing item stubs before creating. A reskinned RAW item
 beats homebrew when the mechanical effect is the same. Only build new if the setting
 flavor or mechanical concept genuinely can't be satisfied by a RAW item.
 
@@ -116,7 +117,7 @@ mechanical content. Read-aloud quality: a player could read this before picking 
 
 **`## Limitations`** — What the item cannot do. Explicit limits prevent table arguments.
 
-**`## History`** — Provenance in Shattered Sea. Who made it, who owned it, how it arrived here.
+**`## History`** — Provenance in the campaign setting. Who made it, who owned it, how it arrived here.
 
 **`> [!dm]`** — DM secrets, hidden mechanics, future hooks. Nothing in this callout is player-facing.
 
@@ -160,8 +161,8 @@ For named, PC-relevant items: load `ttrpg-visual-aids` after DM approval. Catego
 ## Filing
 
 After DM approval:
-1. `wiki/entities/items/{slug}.md`
-2. Add entry to `wiki/index.md` under `## entities/items`
+1. `<wiki>/entities/items/{slug}.md`
+2. Add entry to `<wiki>/index.md` under the appropriate section
 3. Add reciprocal links in all connected entity files (PC page, NPC vendor, location)
 4. Commit: `feat: item — {slug} — {one-line summary}`
 
@@ -181,5 +182,5 @@ quality — a player could read this before picking up the item).
 | `../ttrpg-writing/references/dm-reference-standards.md` | Writing DM callout, history, limitations |
 | `../ttrpg-writing/references/player-facing-prose.md` | Writing flavor description |
 | `../ttrpg-writing/references/callout-standard.md` | Callout type enforcement and conversion |
-| `../ttrpg-llm-wiki-init/references/auto-correct.md` | Fixing structural issues |
-| `../ttrpg-llm-wiki-init/references/wikilink-standards.md` | Creating or fixing wikilinks |
+| Your project's auto-correct reference (if it exists) | Fixing structural issues |
+| Your project's wikilink-standards reference (if it exists) | Creating or fixing wikilinks |

@@ -128,8 +128,8 @@ project and need adaptation or are reference-only.
 - [x] `prep-island` — Island creation
 - [x] `prep-location` — Location prep
 - [x] `prep-faction` — Faction prep
-- [ ] `prep-situation` — Situation prep
-- [ ] `prep-hb-item` — Homebrew item creation
+- [x] `prep-situation` — Situation prep
+- [x] `prep-hb-item` — Homebrew item creation
 - [ ] `pc-combat-primer` — PC combat profiles
 - [ ] `sandbox-narrative` — Sandbox narrative generation
 - [ ] `live-co-dm` — Live co-DM with voice profiling

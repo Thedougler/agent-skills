@@ -1,16 +1,15 @@
 ---
 name: prep-situation
 description: >
-  Create or expand a situation file for the Shattered Sea campaign. Invoke for:
+  Create or expand a situation file for the campaign. Invoke for:
   "create a situation for [conflict]", "track [event] with a clock", "this needs a
   lifecycle", "file this as a situation", any world pressure with a timeline or trigger
   condition. Generates frontmatter with lifecycle and narrative_island fields, clock definition,
   trigger conditions, involved entities, possible outcomes, Three Clue placement (when
-  applicable), and DM notes. Places correctly in wiki/situations/active/ or
-  wiki/situations/dormant/ per lifecycle state.
+  applicable), and DM notes. Places correctly in active/ or dormant/ per lifecycle state.
 ---
 
-> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in [`prep-family-standards`](../ttrpg-llm-wiki-init/references/prep-family-standards.md). Read it before generating; this file covers only what's specific to this content type.
+> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in your project's `prep-family-standards.md` reference if one exists. Read it before generating; this file covers only what's specific to this content type.
 Domain-specific: determine whether this situation has a hidden conclusion (mystery, secret faction, hidden cause) — if yes, the Three Clue Rule applies (below).
 
 ---
@@ -33,9 +32,9 @@ Name the connecting PC or ask before generating.
 
 | State | Meaning | File path |
 |---|---|---|
-| `active` | Clock is running right now | `wiki/situations/active/slug.md` |
-| `dormant` | Clock starts on a named trigger | `wiki/situations/dormant/slug.md` |
-| `resolved` | Situation concluded | `wiki/situations/resolved/slug.md` |
+| `active` | Clock is running right now | `<wiki>/situations/active/slug.md` |
+| `dormant` | Clock starts on a named trigger | `<wiki>/situations/dormant/slug.md` |
+| `resolved` | Situation concluded | `<wiki>/situations/resolved/slug.md` |
 
 ### Clock Definition
 
@@ -129,7 +128,7 @@ Universal fields are auto-completed by the write hook. You must author the situa
 
 - `subtype` — `conflict | mystery | political | environmental | personal`
 - `lifecycle` — `active | dormant | resolved` (see Lifecycle Decision above; drives the file path)
-- `narrative_island` — `null`, or `"[[narrative-island-slug|Name]]"` if this situation belongs to a narrative island (a plot-device cluster in `wiki/narrative-islands/` — not a geographic place). The field is `narrative_island`, never `island`: "island" alone means a landmass.
+- `narrative_island` — `null`, or `"[[narrative-island-slug|Name]]"` if this situation belongs to a narrative island (a plot-device cluster in `<wiki>/narrative-islands/` — not a geographic place). The field is `narrative_island`, never `island`: "island" alone means a landmass.
 - `clocks` — fill per the Clock Definition block above (`name`, `segments`, `filled`, `trigger`, `consequence`)
 
 ---
@@ -137,10 +136,10 @@ Universal fields are auto-completed by the write hook. You must author the situa
 ## Filing
 
 After writing the page:
-1. Place at `wiki/situations/active/slug.md` or `wiki/situations/dormant/slug.md`
-2. Add entry to `wiki/index.md` under `## situations`
+1. Place at `<wiki>/situations/active/slug.md` or `<wiki>/situations/dormant/slug.md`
+2. Add entry to `<wiki>/index.md` under the appropriate section
 3. Add reciprocal links to all referenced entities and factions
-4. If the situation has a faction clock: add or update entry in `wiki/hot.md`
+4. If the situation has a faction clock: add or update entry in the world state file (`<wiki>/hot.md`)
 5. Commit: `feat: situation — {slug} — {one-line summary}`
 
 ---
@@ -161,5 +160,5 @@ enforcement apply to every situation page.
 |---|---|
 | `../ttrpg-writing/references/dm-reference-standards.md` | Writing all situation prose — summary, pressures, outcomes |
 | `../ttrpg-writing/references/callout-standard.md` | Callout type enforcement and conversion |
-| `../ttrpg-llm-wiki-init/references/auto-correct.md` | Fixing structural issues during or after content creation |
-| `../ttrpg-llm-wiki-init/references/wikilink-standards.md` | Creating or fixing wikilinks |
+| Your project's auto-correct reference (if it exists) | Fixing structural issues during or after content creation |
+| Your project's wikilink-standards reference (if it exists) | Creating or fixing wikilinks |
