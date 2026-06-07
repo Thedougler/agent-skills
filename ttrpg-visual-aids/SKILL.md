@@ -1,7 +1,7 @@
 ---
 name: ttrpg-visual-aids
 description: >
-  Use when generating, placing, or embedding visual aids for the Shattered Sea campaign.
+  Use when generating, placing, or embedding visual aids for the campaign wiki.
   Triggers: "generate art for", "create a visual", "make a scene image", "add a portrait",
   "illustrate this", "banner for", "combat art", any session prep or recap needing
   illustrations, any entity page needing a portrait or banner, any question about where
@@ -13,11 +13,12 @@ description: >
 
 ## Before Generating
 
-Read `wiki/system/art-style.md` before every generation task. It defines the campaign's
-visual style, negative constraints, category overrides, and character appearance references.
-Apply its directives to every prompt — no exceptions, no "I'll use a similar style."
+Read your project's art-style reference file (e.g. `<wiki>/system/art-style.md`) before
+every generation task. It defines the campaign's visual style, negative constraints,
+category overrides, and character appearance references. Apply its directives to every
+prompt — no exceptions, no "I'll use a similar style."
 
-If `wiki/system/art-style.md` does not exist, stop and tell the DM.
+If the art-style file does not exist, stop and tell the DM.
 
 ## Prompt Construction
 
@@ -34,23 +35,23 @@ visual description on their page, ask the DM — do not approximate.
 
 ## Storage Paths
 
-All generated images go inside `wiki/assets/`. Create subdirectories as needed.
+All generated images go inside `<wiki>/assets/`. Create subdirectories as needed.
 
 | Category | Path | Naming Pattern | Slideshow Folder |
 |---|---|---|---|
-| Portraits | `wiki/assets/portraits/` | `Entity-Name.webp` | Character gallery |
-| Banners | `wiki/assets/banners/` | `Entity-Name.webp` | — |
-| Session art | `wiki/assets/sessions/session-NN/` | `NN-description.webp` | Per-session slideshow |
-| Scene art | `wiki/assets/scenes/location-slug/` | `description.webp` | Per-location slideshow |
-| Combat art | `wiki/assets/combat/encounter-slug/` | `description.webp` | Per-encounter slideshow |
-| Maps | `wiki/assets/maps/` | `area-name.webp` | — |
-| Handouts | `wiki/assets/handouts/` | `handout-name.webp` | — |
+| Portraits | `<wiki>/assets/portraits/` | `Entity-Name.webp` | Character gallery |
+| Banners | `<wiki>/assets/banners/` | `Entity-Name.webp` | — |
+| Session art | `<wiki>/assets/sessions/session-NN/` | `NN-description.webp` | Per-session slideshow |
+| Scene art | `<wiki>/assets/scenes/location-slug/` | `description.webp` | Per-location slideshow |
+| Combat art | `<wiki>/assets/combat/encounter-slug/` | `description.webp` | Per-encounter slideshow |
+| Maps | `<wiki>/assets/maps/` | `area-name.webp` | — |
+| Handouts | `<wiki>/assets/handouts/` | `handout-name.webp` | — |
 
 **Naming rules:**
-- Kebab-case, lowercase: `kyzil-reunion.webp`, `market-ambush.webp`
-- Portraits and banners use the entity's display name: `Master-Kyzil.webp`, `Calveno.webp`
+- Kebab-case, lowercase: `npc-reunion.webp`, `market-ambush.webp`
+- Portraits and banners use the entity's display name: `Master-Kyzil.webp`, `Settlement-Name.webp`
 - Session folders use zero-padded numbers: `session-01/`, `session-04/`
-- Location slugs match the wiki filename: `calveno`, `la-vasca`, `le-paludi`
+- Location slugs match the wiki filename
 - Prefer `.webp` for all art. Use `.png` only for maps or handouts needing lossless detail.
 
 **Why this structure:** Each subfolder is a self-contained slideshow source. Point OBS,
@@ -62,7 +63,7 @@ a media player, or Obsidian's image gallery at any folder to get a thematic slid
 **Syntax:** Obsidian wikilink embed. Path from vault root.
 
 ```markdown
-![[wiki/assets/portraits/Master-Kyzil.webp|Full generation prompt used as alt text]]
+![[<wiki>/assets/portraits/NPC-Name.webp|Full generation prompt used as alt text]]
 ```
 
 **Alt text is the prompt.** Write the full generation prompt as alt text — this is the
@@ -72,7 +73,7 @@ Long embed lines are expected and intentional — do not truncate or summarize t
 **Width control** (optional, only when the default is too large):
 
 ```markdown
-![[wiki/assets/portraits/Master-Kyzil.webp|Full prompt text|400]]
+![[<wiki>/assets/portraits/NPC-Name.webp|Full prompt text|400]]
 ```
 
 ### Placement Rules
@@ -111,14 +112,14 @@ Long embed lines are expected and intentional — do not truncate or summarize t
 After constructing the prompt per the Prompt Construction rules above:
 
 1. Determine the output path from the Storage Paths table and naming rules
-2. Determine the aspect ratio from the Category Overrides in `art-style.md` (e.g. `3:4` for portraits, `16:9` for scenes, `3:1` for banners)
+2. Determine the aspect ratio from the Category Overrides in your art-style file (e.g. `3:4` for portraits, `16:9` for scenes, `3:1` for banners)
 3. Run the generation script:
 
 ```bash
 python3 .claude/skills/openrouter-image-gen/generate-image.py \
   "your constructed prompt here" \
   --aspect 16:9 \
-  --output wiki/assets/sessions/session-04/kyzil-reunion.webp
+  --output <wiki>/assets/sessions/session-04/scene-description.webp
 ```
 
 4. Send the image to the user with `SendUserFile` so they can see it in chat
@@ -126,9 +127,9 @@ python3 .claude/skills/openrouter-image-gen/generate-image.py \
 6. If the result is poor, refine the prompt and regenerate
 7. Embed per the Embedding in Markdown rules above
 
-For Gemini models (the default), write prompts as natural-language scene descriptions
-rather than keyword lists. See `openrouter-image-gen/references/prompting-best-practices.md`
-for model-specific guidance.
+Write prompts as natural-language scene descriptions rather than keyword lists for best
+results. See `openrouter-image-gen/references/prompting-best-practices.md` for
+model-specific guidance.
 
 ### Fulfilling `[!visual-aid]` Callouts
 
@@ -141,18 +142,16 @@ If generation fails (no API key, API error, insufficient credits), write the ful
 prompt as a `> [!visual-aid]` callout where the image would go:
 
 ```markdown
-> [!visual-aid] Scene: Kyzil Reunion
-> Archer-style adult animated illustration, widescreen cinematic scene, ...
-> [full prompt incorporating all art-style.md directives]
+> [!visual-aid] Scene: Description
+> [full prompt incorporating all art-style directives]
 ```
 
 A capable agent or the DM replaces this callout with an embed later.
 
 ## Legacy Assets
 
-Older images live in `.raw/assets/` (subdirectories: `session-art/`, `banners/`,
-`portraits/`, `maps/`, `handouts/`). These are referenced in existing pages as
-`![[raw/assets/...]]`. Do not move legacy files — new images go in `wiki/assets/`.
+If your project has older images in a separate location (e.g. a `.raw/assets/` or
+`assets/legacy/` directory), do not move them — new images go in `<wiki>/assets/`.
 
 When generating new art for a scene that already has a legacy embed, **replace** the
 legacy embed with the new one. Do not keep both — the placement rules limit each

@@ -112,7 +112,7 @@ project and need adaptation or are reference-only.
 - [x] `ttrpg-wiki-organize` — Vault file/folder restructuring
 - [x] `ttrpg-wiki-query` — Query and search wiki data
 - [x] `ttrpg-writing` — Prose quality for wiki content
-- [ ] `ttrpg-visual-aids` — Visual aid generation for sessions
+- [x] `ttrpg-visual-aids` — Visual aid generation for sessions
 - [ ] `vault-health` — Vault integrity checks
 - [ ] `cross-linker` — Add missing cross-references
 - [ ] `tag-taxonomy` — Controlled tagging vocabulary
