@@ -1,7 +1,7 @@
 ---
 name: sandbox-narrative
 description: >
-  Sandbox narrative principles for the Shattered Sea campaign. Invoke when designing
+  Sandbox narrative principles for TTRPG campaigns. Invoke when designing
   session structure, campaign arcs, faction timelines, or any prep that needs to feel
   alive and player-driven. Use for: "make this feel more sandbox", "is this railroading?",
   situation design, narrative island composition, strong start review, faction clock design,

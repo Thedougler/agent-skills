@@ -131,7 +131,7 @@ project and need adaptation or are reference-only.
 - [x] `prep-situation` — Situation prep
 - [x] `prep-hb-item` — Homebrew item creation
 - [x] `pc-combat-primer` — PC combat profiles
-- [ ] `sandbox-narrative` — Sandbox narrative generation
+- [x] `sandbox-narrative` — Sandbox narrative generation
 - [ ] `live-co-dm` — Live co-DM with voice profiling
 - [ ] `live-transcription` — Session audio transcription
 - [x] `roll-dice` — Dice rolling utility
