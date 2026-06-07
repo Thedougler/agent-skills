@@ -3,7 +3,7 @@ name: ttrpg-wiki-lint
 metadata:
   version: "4.0"
 description: >
-  Lint the Shattered Sea wiki, fix what's safe to fix, and track improvement
+  Lint a TTRPG wiki, fix what's safe to fix, and track improvement
   over time. Checks vault health: frontmatter standardization, broken wikilinks,
   orphans, deadends, lore consistency (dead entity refs, parent-location gaps,
   narrative-island mismatches, status drift), tag hygiene (aliases, deprecated,
@@ -20,10 +20,9 @@ description: >
   "incremental lint", "lint changed files", "self-improvement", "wiki quality".
 ---
 
-# TTRPG Wiki Lint — Shattered Sea
+# TTRPG Wiki Lint
 
-The `sea` CLI does the heavy lifting: `node packages/cli/dist/cli.js lint` (or
-`sea lint` if linked). It splits every problem into two piles:
+Your wiki's lint CLI does the heavy lifting. It splits every problem into two piles:
 
 - **Safe, reversible -> auto-fixed** (`--fix` / `--fix-tags`): frontmatter
   completion, status-drift correction, lifecycle-folder sync, tag alias
@@ -39,8 +38,8 @@ The `sea` CLI does the heavy lifting: `node packages/cli/dist/cli.js lint` (or
 ## The loop
 
 ```
-1. Lint            sea lint --top 10
-2. Auto-fix safe   sea lint --fix --fix-tags   (then commit)
+1. Lint            <lint-cmd> --top 10
+2. Auto-fix safe   <lint-cmd> --fix --fix-tags   (then commit)
 3. Re-lint         what remains needs you — use --top for the priority list
 4. Work the report by category (below), fixing + committing as you go
 5. Manual lore     check prose-level consistency on files you touched (see below)
@@ -57,39 +56,37 @@ drift, and entity identity.
 
 ```bash
 # Report only — whole vault. Shows all issues by severity.
-sea lint
+<lint-cmd>
 
 # Top 10 highest-leverage actions (batches identical issues, priority-ordered).
-sea lint --top 10
+<lint-cmd> --top 10
 
 # Standardize frontmatter + fix safe tag issues, then report what's left.
-sea lint --fix --fix-tags
+<lint-cmd> --fix --fix-tags
 
 # Incremental: only lint files changed since a git ref or date.
-sea lint --since HEAD~5
-sea lint --since 2026-06-01
-sea lint --fix --since HEAD~10
+<lint-cmd> --since HEAD~5
+<lint-cmd> --since 2026-06-01
+<lint-cmd> --fix --since HEAD~10
 
 # Compare against a previous snapshot (saved with --json > file.json).
-sea lint --diff .claude/lint-baseline.json
+<lint-cmd> --diff .claude/lint-baseline.json
 
 # Scope to a file or directory.
-sea lint --fix wiki/entities/characters/npcs/
+<lint-cmd> --fix wiki/entities/characters/npcs/
 
 # Just the counts.
-sea lint --summary
+<lint-cmd> --summary
 
 # Only errors.
-sea lint --min-severity error
+<lint-cmd> --min-severity error
 
 # Machine-readable (includes per-rule breakdown for diffing).
-sea lint --json
+<lint-cmd> --json
 
 # Write the DM review queue.
-sea lint --report
+<lint-cmd> --report
 ```
-
-If `sea` is not linked, use: `node packages/cli/dist/cli.js lint`
 
 Exit code is `1` when any **error** exists, `0` otherwise.
 
@@ -141,7 +138,7 @@ Everything `--fix` does is file-local, idempotent, and body-preserving:
 
 | Fix | What happens |
 |---|---|
-| **Tag aliases** | Known aliases replaced with canonical form (e.g. `maw` -> `drowned-maw`) |
+| **Tag aliases** | Known aliases replaced with canonical form (e.g. `old-alias` -> `canonical-tag`) |
 | **Deprecated-fm tags** | Tags duplicating frontmatter fields removed (e.g. `npc`, `faction`, `active`) |
 | **Deprecated-system tags** | System/process tags removed (e.g. `lint`, `review`, `current-state`) |
 | **Deduplication** | Duplicate tags (including post-alias-resolution duplicates) removed |
@@ -172,13 +169,13 @@ For quick checks during a session (e.g., after ingest or a batch of edits), use
 
 ```bash
 # Lint files changed in the last 5 commits.
-sea lint --since HEAD~5
+<lint-cmd> --since HEAD~5
 
 # Lint files changed since yesterday.
-sea lint --since "1 day ago"
+<lint-cmd> --since "1 day ago"
 
 # Fix + lint only what changed since a specific commit.
-sea lint --fix --fix-tags --since abc1234
+<lint-cmd> --fix --fix-tags --since abc1234
 ```
 
 This makes lint cheap enough to run after every batch of changes. Cross-file
@@ -195,15 +192,15 @@ health over time.
 ### Save a baseline
 
 ```bash
-sea lint --json > .claude/lint-baseline.json
+<lint-cmd> --json > .claude/lint-baseline.json
 ```
 
 ### Fix issues, then diff
 
 ```bash
-sea lint --fix --fix-tags
+<lint-cmd> --fix --fix-tags
 # ... work the report ...
-sea lint --diff .claude/lint-baseline.json
+<lint-cmd> --diff .claude/lint-baseline.json
 ```
 
 The diff shows per-severity and per-rule changes: what improved, what
@@ -211,13 +208,13 @@ regressed, and any new files with issues.
 
 ### Health snapshots
 
-`sea health` captures the full lint breakdown (per-rule counts) alongside
+`<health-cmd>` captures the full lint breakdown (per-rule counts) alongside
 file counts, token usage, and infrastructure metrics:
 
 ```bash
-sea health --save --label "post-lint-cleanup"
-sea health --diff    # compare last two saved
-sea health --history  # trend table
+<health-cmd> --save --label "post-lint-cleanup"
+<health-cmd> --diff    # compare last two saved
+<health-cmd> --history  # trend table
 ```
 
 The continuous-self-improvement skill uses these snapshots for its
@@ -269,21 +266,21 @@ intervention, this sequence maximizes leverage:
 
 ```bash
 # 1. Save baseline.
-sea lint --json > /tmp/lint-before.json
+<lint-cmd> --json > /tmp/lint-before.json
 
 # 2. Auto-fix everything safe.
-sea lint --fix --fix-tags
+<lint-cmd> --fix --fix-tags
 
 # 3. See what's left, prioritized.
-sea lint --top 10
+<lint-cmd> --top 10
 
 # 4. Work the top items (agent judgment).
 
 # 5. Measure improvement.
-sea lint --diff /tmp/lint-before.json
+<lint-cmd> --diff /tmp/lint-before.json
 
 # 6. Save snapshot for trend tracking.
-sea health --save --label "lint-session"
+<health-cmd> --save --label "lint-session"
 ```
 
 The `continuous-self-improvement` skill wraps this in a formal MEASURE -> FIX ->
@@ -304,10 +301,9 @@ that skill provides the discipline.
 
 ## When the rules are wrong, not the files
 
-The linter encodes conventions in three places: path->type/subtype tables in
-`packages/lib/src/path-inference.ts`, value vocabularies in
-`wiki-frontmatter.schema.json`, and required-fields-by-type in
-`packages/lib/src/path-inference.ts`. When a *whole category* of files
+The linter encodes conventions in three places: path->type/subtype tables,
+value vocabularies, and required-fields-by-type (check your project's linter config).
+When a *whole category* of files
 trips the same check, the rules may have fallen behind reality. Don't mass-edit
 files to satisfy a stale rule, and don't silently relax the rule — surface it
 to the DM with both options.

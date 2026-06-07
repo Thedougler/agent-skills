@@ -108,7 +108,7 @@ project and need adaptation or are reference-only.
 
 - [x] `ttrpg-llm-wiki-init` — Foundation skill for shattered-sea sessions
 - [x] `ttrpg-wiki-ingest` — Ingest source material into the wiki
-- [ ] `ttrpg-wiki-lint` — Health checks and auto-corrections
+- [x] `ttrpg-wiki-lint` — Health checks and auto-corrections
 - [ ] `ttrpg-wiki-organize` — Vault file/folder restructuring
 - [ ] `ttrpg-wiki-query` — Query and search wiki data
 - [ ] `ttrpg-writing` — Prose quality for wiki content
