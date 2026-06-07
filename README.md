@@ -4,7 +4,9 @@ A centralized library of Claude Code skills consolidated from multiple projects.
 
 ## What's here
 
-85 skills across 6 categories:
+**85 skills**, **9 hooks**, and **4 subagents** across three source projects.
+
+### Skills
 
 | Category | Count | Examples |
 |---|---|---|
@@ -16,6 +18,22 @@ A centralized library of Claude Code skills consolidated from multiple projects.
 | General | 10 | `tdd`, `skill-creator`, `find-skills` |
 
 See [CLAUDE.md](CLAUDE.md) for the full index with descriptions.
+
+### Hooks (`hooks/`)
+
+Shell scripts that fire on Claude Code tool events (`PreToolUse` / `PostToolUse`).
+Covers Python formatting/linting, TypeScript formatting, env/lockfile guards, and
+wiki-specific automation (frontmatter, wikilink checks, index regen).
+
+See [hooks/README.md](hooks/README.md) for wiring instructions.
+
+### Subagents (`agents/`)
+
+Specialist agent definitions dispatched via the `Agent` tool for focused subtasks:
+wiki content review, lore consistency checking, TypeScript type checking, and
+Gemini-backed research.
+
+See [agents/README.md](agents/README.md) for details.
 
 ## Usage
 
