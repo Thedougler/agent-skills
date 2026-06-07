@@ -114,7 +114,7 @@ project and need adaptation or are reference-only.
 - [x] `ttrpg-writing` — Prose quality for wiki content
 - [x] `ttrpg-visual-aids` — Visual aid generation for sessions
 - [x] `vault-health` — Vault integrity checks
-- [ ] `cross-linker` — Add missing cross-references
+- [x] `cross-linker` — Add missing cross-references
 - [ ] `tag-taxonomy` — Controlled tagging vocabulary
 - [ ] `session-ingest` — Session transcript processing
 - [ ] `session-recap` — Session summaries
