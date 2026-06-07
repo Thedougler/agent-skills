@@ -28,18 +28,18 @@ The party combat profile is what `prep-encounter` reads. The PC profiles feed it
 ## Prerequisites
 
 Before any primer work, read:
-1. The PC's character sheet: `wiki/system/players/{pc-slug}-sheet.md`
+1. The PC's character sheet: `<wiki>/system/players/{pc-slug}-sheet.md`
    - **If this file doesn't exist:** check for a PDF in `.raw/characters/` or
-     `wiki/entities/characters/pcs/`. If a PDF exists, convert it first using
+     `<wiki>/entities/characters/pcs/` or a similar location. If a PDF exists, convert it first using
      `references/CHARACTER-SHEET-CONVERSION.md`. The markdown sheet is the canonical
      mechanical source for all downstream calculations.
    - **If no PDF exists either:** ask the user to provide the character sheet.
-2. Existing primer (if updating): `wiki/system/{pc}-primer.md` or `wiki/dm/{pc}-primer.md`
-3. `wiki/dm/combat-analytics.md` — current empirical observations
-4. `wiki/system/party-combat-primer.md` — current party-level intelligence
+2. Existing primer (if updating): `<wiki>/system/{pc}-primer.md` or `<wiki>/dm/{pc}-primer.md`
+3. `<wiki>/dm/combat-analytics.md` — current empirical observations
+4. `<wiki>/system/party-combat-primer.md` — current party-level intelligence
 
 If updating after a session, also read the session's combat scenes
-(e.g., `wiki/sessions/session-{NN}-scene-*-encounter.md` or relevant scenes with
+(e.g., `<wiki>/sessions/session-{NN}-scene-*-encounter.md` or relevant scenes with
 combat tag).
 
 ---
@@ -47,11 +47,11 @@ combat tag).
 ## Character Sheet Conversion
 
 When a character sheet PDF is available but no agent-readable markdown exists at
-`wiki/system/players/{pc-slug}-sheet.md`:
+`<wiki>/system/players/{pc-slug}-sheet.md`:
 
 1. Read the PDF using the Read tool (supports PDF natively)
 2. Convert to structured markdown following `references/CHARACTER-SHEET-CONVERSION.md`
-3. Write to `wiki/system/players/{pc-slug}-sheet.md`
+3. Write to `<wiki>/system/players/{pc-slug}-sheet.md`
 4. Keep the original PDF in place — it remains the player's reference copy
 5. Proceed with combat profile work using the new markdown as source
 
@@ -116,7 +116,7 @@ digraph primer_workflow {
 
 ## PC Combat Profile — Output Structure
 
-Filed to: `wiki/dm/{pc-slug}-combat-profile.md`
+Filed to: `<wiki>/dm/{pc-slug}-combat-profile.md`
 
 Read `references/PC-COMBAT-PROFILE.md` for full field definitions and quality bar.
 
@@ -136,7 +136,7 @@ Read `references/PC-COMBAT-PROFILE.md` for full field definitions and quality ba
 ```yaml
 type: dm-intelligence
 subtype: pc-combat-profile
-campaign: shattered-sea
+campaign: <campaign-slug>
 status: active
 audience: agent
 publish: false
@@ -154,7 +154,7 @@ update_trigger: "level-up, new session combat data, significant gear change"
 
 ## Party Combat Profile — Output Structure
 
-Filed to: `wiki/dm/party-combat-profile.md`
+Filed to: `<wiki>/dm/party-combat-profile.md`
 
 Read `references/PARTY-COMBAT-PROFILE.md` for full field definitions.
 
@@ -177,7 +177,7 @@ Read `references/PARTY-COMBAT-PROFILE.md` for full field definitions.
 ```yaml
 type: dm-intelligence
 subtype: party-combat-profile
-campaign: shattered-sea
+campaign: <campaign-slug>
 status: active
 audience: agent
 publish: false
@@ -230,7 +230,7 @@ Mark any band derived from fewer than 3 encounters at that tier as `[low confide
 
 ## Relationship to Existing Primers
 
-The **existing PC primers** (`wiki/system/{pc}-primer.md` and `wiki/dm/{pc}-primer.md`)
+The **existing PC primers** (`<wiki>/system/{pc}-primer.md` and `<wiki>/dm/{pc}-primer.md`)
 remain as-is. They serve a different purpose: qualitative encounter design guidance
 (spotlight/pressure/avoid). They are the "what to do" files.
 
@@ -263,15 +263,15 @@ mature enough (3+ sessions of data).
 
 | Output | Path | Commit prefix |
 |---|---|---|
-| Character sheet (converted) | `wiki/system/players/{pc-slug}-sheet.md` | `prep:` |
+| Character sheet (converted) | `<wiki>/system/players/{pc-slug}-sheet.md` | `prep:` |
 | Character sheet (re-synced) | same | `curation:` |
-| PC combat profile (new) | `wiki/dm/{pc-slug}-combat-profile.md` | `prep:` |
+| PC combat profile (new) | `<wiki>/dm/{pc-slug}-combat-profile.md` | `prep:` |
 | PC combat profile (update) | same | `curation:` |
-| Party combat profile (new) | `wiki/dm/party-combat-profile.md` | `prep:` |
+| Party combat profile (new) | `<wiki>/dm/party-combat-profile.md` | `prep:` |
 | Party combat profile (update) | same | `curation:` |
 
 After writing:
-1. Add entry to `wiki/index.md` under `## dm-intelligence` (or create section)
+1. Add entry to `<wiki>/index.md` under `## dm-intelligence` (or create section)
 2. Add reciprocal links from the PC's main entity page
 3. Commit with message: `prep: combat-profile — {pc-slug} — {trigger summary}`
 
