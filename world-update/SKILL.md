@@ -1,8 +1,7 @@
 ---
 name: world-update
 description: >
-  Advance the living world for the Shattered Sea campaign — the canon owner of faction-clock
-  writes. Two modes. POST-SESSION (default): after every session, run the full tick — triage
+  Advance the living world for the campaign — the canon owner of faction-clock writes. Two modes. POST-SESSION (default): after every session, run the full tick — triage
   every thread into hot/warm/cold, roll d20 for each, weave PC arcs, write all changes. Trigger
   on: "world update", "post-session update", "update after session N", "run the world forward",
   "tick the world", "advance the world after session". ON-DEMAND / MID-SESSION clock advance:
@@ -39,7 +38,7 @@ Both modes own canon clock writes. The clock-advance discipline below applies to
 
 ## Clock Advance (both modes)
 
-For each faction with an active clock in `wiki/hot.md`:
+For each faction with an active clock in `<wiki>/hot.md` (your world state file):
 
 1. Read their situation file — what is the trigger condition for each segment?
 2. Did that trigger condition occur this session / interval? (party action or world-state change)
@@ -54,7 +53,7 @@ For each faction with an active clock in `wiki/hot.md`:
 
 Run after every session, once a session recap exists. Input priority:
 
-1. Session recap file (`wiki/sessions/session-NN-recap.md`) — preferred
+1. Session recap file (`<wiki>/sessions/session-NN-recap.md`) — preferred
 2. Session summary or DM notes — if recap lacks detail
 3. Raw transcript — fallback for ambiguous events
 
@@ -79,7 +78,7 @@ cold threads accumulate advances across sessions, their hooks escalate from whis
 
 Read `references/update-workflow.md` for the complete step-by-step ritual. Summary:
 
-1. **Load context** — session recap, hot.md, situation frontmatter (summaries only)
+1. **Load context** — session recap, world state file, situation frontmatter (summaries only)
 2. **Triage** — classify threads as HOT / WARM / COLD; present for DM confirmation
 3. **Process each thread** — deep read situation + linked entities → Context Brief → propose action
    → roll d20 via roll.sh → interpret → write (one thread at a time)
@@ -94,8 +93,8 @@ Read `references/update-workflow.md` for the complete step-by-step ritual. Summa
 |---|---|
 | `sandbox-narrative` | Load for narrative device application during PC arc weaving. |
 | `ttrpg-writing` | Load for prose standards when writing wiki updates. |
-| `roll-dice` | Every thread/clock advancement uses `roll.sh d20`. The result is canon. |
-| `prep-session` | For *prep-time pending pressure* (not canon), prep-session simulates likely clocks as pending. world-update owns the canon write and feeds next session's prep via hot.md predictions. |
+| `roll-dice` | Every thread/clock advancement rolls a d20. The result is canon. |
+| `prep-session` | For *prep-time pending pressure* (not canon), prep-session simulates likely clocks as pending. world-update owns the canon write and feeds next session's prep via the world state file predictions. |
 
 ---
 

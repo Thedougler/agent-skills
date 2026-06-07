@@ -118,7 +118,7 @@ project and need adaptation or are reference-only.
 - [x] `tag-taxonomy` — Controlled tagging vocabulary
 - [x] `session-ingest` — Session transcript processing
 - [x] `session-recap` — Session summaries
-- [ ] `world-update` — Campaign world state updates
+- [x] `world-update` — Campaign world state updates
 - [ ] `prep-session` — Session prep
 - [ ] `prep-encounter` — Encounter design and calibration
 - [ ] `prep-npc` — NPC creation and expansion
