@@ -1,14 +1,15 @@
 ---
 name: tdd
 description: >
-  Test-driven development with the red-green-refactor loop. Triggers on "use TDD", "test-first",
-  "write the test first", "red-green-refactor", "red green refactor", "write a failing test",
-  "TDD this", "add tests before the code", "I want integration tests for", or any feature/bugfix
-  where tests should be written before implementation. Applies to the player-view app and
-  .claude/scripts in this repo.
+  Test-driven development with the red-green-refactor loop. Use whenever the user says "use TDD",
+  "test-first", "write the test first", "red-green-refactor", "write a failing test", "TDD this",
+  "add tests before the code", or asks for integration tests, or any feature/bugfix where tests
+  should drive implementation. Applies to any language or framework.
 ---
 
 # Test-Driven Development
+
+> Code examples below use TypeScript/Jest, but the principles apply to any language or test framework.
 
 ## Philosophy
 
