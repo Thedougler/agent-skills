@@ -15,13 +15,13 @@ You are enforcing consistent tagging across the wiki by normalizing tags to a co
 
 ## Before You Start
 
-1. Read `.env` to get `OBSIDIAN_VAULT_PATH`
-2. Read `$OBSIDIAN_VAULT_PATH/wiki/system/taxonomy.md` — this is the canonical tag list
-3. Read `index.md` to understand the wiki's scope
+1. Find your project's taxonomy file — typically at `<wiki>/system/taxonomy.md`
+2. Read it — this is the canonical tag list
+3. Read `<wiki>/index.md` to understand the wiki's scope
 
 ## The Taxonomy File
 
-The canonical tag vocabulary lives at `$OBSIDIAN_VAULT_PATH/wiki/system/taxonomy.md`. It defines:
+The canonical tag vocabulary lives at `<wiki>/system/taxonomy.md` (adapt path to your project). It defines:
 
 - **Canonical tags** — the tags that should be used
 - **Aliases** — common alternatives that should be mapped to the canonical form
@@ -56,7 +56,7 @@ When the user wants to see the current state of tags:
 ### Step 1: Scan all pages
 
 ```
-Glob: $VAULT_PATH/wiki/**/*.md (excluding .obsidian/)
+Glob: <wiki>/**/*.md (excluding .obsidian/)
 Extract: tags field from YAML frontmatter
 ```
 
@@ -140,13 +140,13 @@ For tags that aren't in the taxonomy and aren't aliases:
 
 ### Step 4: Update taxonomy
 
-If new canonical tags were agreed upon, append them to `wiki/system/taxonomy.md` in the correct section.
+If new canonical tags were agreed upon, append them to `<wiki>/system/taxonomy.md` in the correct section.
 
 ## Mode 3: Tagging a New Page
 
 When you're creating a wiki page and need to choose tags:
 
-1. Read `wiki/system/taxonomy.md`
+1. Read `<wiki>/system/taxonomy.md`
 2. Select up to 5 tags that best describe the page:
    - 1-2 **domain tags** (what subject area)
    - 1 **type tag** (what kind of thing)
@@ -161,11 +161,11 @@ When the user wants to add a tag to the vocabulary:
 
 1. Check if an existing tag already covers the concept (suggest it if so)
 2. If genuinely new, determine which section it belongs in (Domain, Type, Project)
-3. Add it to `wiki/system/taxonomy.md` with:
+3. Add it to `<wiki>/system/taxonomy.md` with:
    - The canonical tag name
    - What it's used for
    - Any aliases to redirect
 
 ## After Any Tag Operation
 
-**`hot.md`** — Read `$OBSIDIAN_VAULT_PATH/hot.md` (create from the template in `wiki-ingest` if missing). Update **Recent Activity** with a one-line summary — e.g. "Tag audit: normalized 14 tags across 28 pages; 2 new canonical tags added." Keep the last 3 operations. Update `updated` timestamp.
+Update your current world state / activity log file (e.g. `<wiki>/hot.md`) with a one-line summary — e.g. "Tag audit: normalized 14 tags across 28 pages; 2 new canonical tags added."

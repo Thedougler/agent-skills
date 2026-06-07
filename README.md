@@ -115,7 +115,7 @@ project and need adaptation or are reference-only.
 - [x] `ttrpg-visual-aids` — Visual aid generation for sessions
 - [x] `vault-health` — Vault integrity checks
 - [x] `cross-linker` — Add missing cross-references
-- [ ] `tag-taxonomy` — Controlled tagging vocabulary
+- [x] `tag-taxonomy` — Controlled tagging vocabulary
 - [ ] `session-ingest` — Session transcript processing
 - [ ] `session-recap` — Session summaries
 - [ ] `world-update` — Campaign world state updates
