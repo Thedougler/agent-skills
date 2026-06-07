@@ -126,8 +126,8 @@ project and need adaptation or are reference-only.
 - [x] `prep-dungeon` — Dungeon and adventure site design
 - [x] `prep-ship` — Ship creation
 - [x] `prep-island` — Island creation
-- [ ] `prep-location` — Location prep
-- [ ] `prep-faction` — Faction prep
+- [x] `prep-location` — Location prep
+- [x] `prep-faction` — Faction prep
 - [ ] `prep-situation` — Situation prep
 - [ ] `prep-hb-item` — Homebrew item creation
 - [ ] `pc-combat-primer` — PC combat profiles

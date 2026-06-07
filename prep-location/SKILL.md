@@ -1,14 +1,14 @@
 ---
 name: prep-location
 description: >
-  Create or expand a location wiki page for the Shattered Sea campaign. Invoke for:
+  Create or expand a location wiki page for the campaign. Invoke for:
   "create a page for [place]", "detail [location]", "what does [place] look like",
   "flesh out [settlement/building/dungeon/island]", "design this location". Generates
   frontmatter, toy fields, read-aloud opening, lore, notable sub-locations, inhabitants.
   Applies to all location subtypes: regions, islands, settlements, buildings, dungeons, planes.
 ---
 
-> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in [`prep-family-standards`](../ttrpg-llm-wiki-init/references/prep-family-standards.md). Read it before generating; this file covers only what's specific to this content type.
+> **Shared prep conventions** — stub check, interview + PC-connection requirement, combat calibration, prose pass, and filing — live in your project's `prep-family-standards.md` reference if one exists. Read it before generating; this file covers only what's specific to this content type.
 **Dungeon routing:** If the location is a multi-room dungeon, lair, ruin, or adventure
 site that players will explore room-by-room, route to `prep-dungeon` instead. That skill
 handles phased generation, room keying, spatial topology, and encounter calibration.
@@ -96,14 +96,14 @@ that are part of a larger page.
 ## Filing
 
 Path by subtype:
-- `wiki/entities/places/regions/slug.md`
-- `wiki/entities/places/islands/slug.md`
-- `wiki/entities/places/settlements/slug.md`
-- `wiki/entities/places/buildings/slug.md`
-- `wiki/entities/places/dungeons/slug.md`
-- `wiki/entities/places/planes/slug.md`
+- `<wiki>/entities/places/regions/slug.md`
+- `<wiki>/entities/places/islands/slug.md`
+- `<wiki>/entities/places/settlements/slug.md`
+- `<wiki>/entities/places/buildings/slug.md`
+- `<wiki>/entities/places/dungeons/slug.md`
+- `<wiki>/entities/places/planes/slug.md`
 
-After writing: add to `wiki/index.md`, add reciprocal links, commit.
+After writing: add to `<wiki>/index.md`, add reciprocal links, commit.
 
 ---
 
@@ -122,5 +122,5 @@ notes. **Player-facing prose** for `[!read-aloud]` opening and sub-location impr
 | `../ttrpg-writing/references/player-facing-prose.md` | Writing `[!read-aloud]` opening and sub-location impressions |
 | `../ttrpg-writing/references/callout-standard.md` | Callout type enforcement and conversion |
 | `../ttrpg-writing/references/NAMES.md` | Naming a new location — linguistic roots by culture |
-| `../ttrpg-llm-wiki-init/references/auto-correct.md` | Fixing structural issues during or after content creation |
-| `../ttrpg-llm-wiki-init/references/wikilink-standards.md` | Creating or fixing wikilinks |
+| Your project's auto-correct reference (if it exists) | Fixing structural issues during or after content creation |
+| Your project's wikilink-standards reference (if it exists) | Creating or fixing wikilinks |
