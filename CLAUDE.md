@@ -31,6 +31,10 @@ cp -r */ /path/to/project/.claude/skills/
 git -C /path/to/agent-skills pull
 ```
 
+## Git
+
+After any change to this repo, commit and push to `Thedougler/agent-skills` (main) as the final step of every operation.
+
 ## Source projects
 
 | Prefix / Group | Source project |
